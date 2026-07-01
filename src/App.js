@@ -9,6 +9,7 @@ import CProgrammingPage from './components/CProgrammingPage';
 import SemesterPage from './components/SemesterPage';
 import CoursePage from './components/CoursePage';
 import FloatingBack from './components/FloatingBack';
+import ComingSoon from './components/ComingSoon';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kuk" element={<CoursePage />} />
+        <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/kuk/bca-general" element={<SemesterPage />} />
         <Route path="/os" element={<OSPage />} />
         <Route path="/dbms" element={<DBMSPage />} />

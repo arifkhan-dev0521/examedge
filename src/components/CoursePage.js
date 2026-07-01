@@ -23,12 +23,12 @@ function CoursePage() {
   );
 
   const handleCategoryClick = (category) => {
-    if (category === "BCA General") {
-      navigate('/kuk/bca-general');
-    } else {
-      alert(category + " - Coming Soon!");
-    }
-  };
+  if (category === "BCA General") {
+    navigate('/kuk/bca-general');
+  } else {
+    navigate('/coming-soon');
+  }
+};
 
   return (
     <div className="course-page">

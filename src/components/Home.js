@@ -43,8 +43,8 @@ function Home() {
             <div 
               key={uni.name}
               className="subject-card"
-              onClick={() => uni.active && navigate(uni.path)}
-              style={{ opacity: uni.active ? 1 : 0.5, cursor: uni.active ? 'pointer' : 'not-allowed' }}
+              onClick={() => uni.active ? navigate(uni.path) : navigate('/coming-soon')}
+              style={{ opacity: uni.active ? 1 : 0.6, cursor: 'pointer' }}
             >
               <h3>{uni.name}</h3>
               <p>{uni.fullName}</p>
