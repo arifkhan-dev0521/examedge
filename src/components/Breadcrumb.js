@@ -6,12 +6,12 @@ function Breadcrumb({ items }) {
 
   return (
     <div className="breadcrumb">
-      <a onClick={() => navigate('/')}>Home</a>
+      <span onClick={() => navigate('/')} className="crumb-link">Home</span>
       {items.map((item, index) => (
         <span key={index} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span className="sep">›</span>
           {item.path ? (
-            <a onClick={() => navigate(item.path)}>{item.label}</a>
+            <span onClick={() => navigate(item.path)} className="crumb-link">{item.label}</span>
           ) : (
             <span className="current">{item.label}</span>
           )}

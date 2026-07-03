@@ -9,14 +9,13 @@
   flex-wrap: wrap;
 }
 
-.breadcrumb a, .breadcrumb span {
+.crumb-link {
   color: var(--muted);
-  text-decoration: none;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.breadcrumb a:hover {
+.crumb-link:hover {
   color: var(--accent);
 }
 
