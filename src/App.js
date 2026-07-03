@@ -10,6 +10,7 @@ import SemesterPage from './components/SemesterPage';
 import CoursePage from './components/CoursePage';
 import FloatingBack from './components/FloatingBack';
 import ComingSoon from './components/ComingSoon';
+import SubjectPage from './components/SubjectPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -30,8 +31,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kuk" element={<CoursePage />} />
+        <Route path="/kuk/:courseId" element={<SemesterPage />} />
+        <Route path="/subject/:courseId/:subjectId" element={<SubjectPage />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
-        <Route path="/kuk/bca-general" element={<SemesterPage />} />
         <Route path="/os" element={<OSPage />} />
         <Route path="/dbms" element={<DBMSPage />} />
         <Route path="/c-programming" element={<CProgrammingPage />} />

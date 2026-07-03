@@ -8,26 +8,32 @@ function CoursePage() {
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   const courses = [
-    { name: "BCA", categories: ["BCA General", "BCA AI", "BCA CTIS"] },
-    { name: "BTech", categories: ["CSE", "ECE", "Mechanical", "Civil"] },
-    { name: "BA", categories: ["BA General", "BA English", "BA Economics"] },
-    { name: "BBA", categories: ["BBA General"] },
-    { name: "MCA", categories: ["MCA General"] },
-    { name: "BCom", categories: ["BCom General", "BCom Hons"] },
-    { name: "BSc", categories: ["BSc Computer Science", "BSc Maths", "BSc Physics"] },
-    { name: "MBA", categories: ["MBA General"] }
-  ];
+  { 
+    name: "BCA", 
+    categories: [
+      { name: "BCA General", path: "/kuk/bca-general" },
+      { name: "BCA CTIS", path: "/kuk/bca-ctis" },
+      { name: "BCA AI", path: "/coming-soon" }
+    ] 
+  },
+  { name: "BTech", categories: [
+    { name: "CSE", path: "/coming-soon" },
+    { name: "ECE", path: "/coming-soon" }
+  ]},
+  { name: "BA", categories: [{ name: "BA General", path: "/coming-soon" }]},
+  { name: "BBA", categories: [{ name: "BBA General", path: "/coming-soon" }]},
+  { name: "MCA", categories: [{ name: "MCA General", path: "/coming-soon" }]},
+  { name: "BCom", categories: [{ name: "BCom General", path: "/coming-soon" }]},
+  { name: "BSc", categories: [{ name: "BSc CS", path: "/coming-soon" }]},
+  { name: "MBA", categories: [{ name: "MBA General", path: "/coming-soon" }]}
+];
 
   const filteredCourses = courses.filter((course) =>
     course.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleCategoryClick = (category) => {
-  if (category === "BCA General") {
-    navigate('/kuk/bca-general');
-  } else {
-    navigate('/coming-soon');
-  }
+  navigate(category.path);
 };
 
   return (
@@ -67,14 +73,14 @@ function CoursePage() {
           <h2>{selectedCourse.name} — Select Category</h2>
           <div className="category-grid">
             {selectedCourse.categories.map((cat) => (
-              <div
-                key={cat}
-                className="category-card"
-                onClick={() => handleCategoryClick(cat)}
-              >
-                <h3>{cat}</h3>
-              </div>
-            ))}
+  <div
+    key={cat.name}
+    className="category-card"
+    onClick={() => handleCategoryClick(cat)}
+  >
+    <h3>{cat.name}</h3>
+  </div>
+))}
           </div>
         </div>
       )}
