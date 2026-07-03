@@ -49,7 +49,7 @@ function SubjectPage() {
         >
           {subject.course} · {subject.semester}
         </div>
-        <h1 style={{ color: 'white' }}>{subject.name}</h1>
+        <h1 style={{ color: 'var(--text)' }}>{subject.name}</h1>
         <p>{subject.code} · Previous Year Questions</p>
       </div>
 

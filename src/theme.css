@@ -1,0 +1,35 @@
+/* LIGHT THEME (Default) */
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-soft: rgba(37,99,235,0.08);
+  --navbar-bg: #ffffff;
+  --hero-bg: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+  --input-bg: #f1f5f9;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* DARK THEME */
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --surface: #181c27;
+  --card: #1a1f2e;
+  --border: #252a38;
+  --text: #e2e8f0;
+  --muted: #8892a4;
+  --accent: #4f8ef7;
+  --accent-soft: rgba(79,142,247,0.10);
+  --navbar-bg: #181c27;
+  --hero-bg: linear-gradient(135deg, #111827 0%, #1a1f2e 100%);
+  --input-bg: #1a1f2e;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+}

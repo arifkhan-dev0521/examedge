@@ -1,6 +1,6 @@
 .navbar {
-  background: #181c27;
-  border-bottom: 1px solid #252a38;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--border);
   padding: 14px 20px;
   display: flex;
   align-items: center;
@@ -8,51 +8,34 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: var(--shadow);
 }
 
 .navbar-logo {
   font-size: 20px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .navbar-logo .exam {
-  color: #4f8ef7;
+  color: var(--accent);
 }
 
 .navbar-logo .edge {
-  color: #ffffff;
+  color: var(--text);
 }
 
-.navbar-badge {
-  background: rgba(79,142,247,0.10);
-  color: #4f8ef7;
-  border: 1px solid #4f8ef7;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 12px;
-}
-
-/* back button */
-
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.navbar-back {
-  background: #1a1f2e;
-  border: 1px solid #252a38;
-  color: white;
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 16px;
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 22px;
   cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
   transition: all 0.2s;
+  line-height: 1;
 }
 
-.navbar-back:hover {
-  border-color: #4f8ef7;
-  color: #4f8ef7;
+.theme-toggle:hover {
+  background: var(--accent-soft);
 }

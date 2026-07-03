@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -11,29 +11,36 @@ import CoursePage from './components/CoursePage';
 import FloatingBack from './components/FloatingBack';
 import ComingSoon from './components/ComingSoon';
 import SubjectPage from './components/SubjectPage';
+import './theme.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 }
 
 function App() {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <FloatingBack />
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kuk" element={<CoursePage />} />
         <Route path="/kuk/:courseId" element={<SemesterPage />} />
-        <Route path="/subject/:courseId/:subjectId" element={<SubjectPage />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
+        <Route path="/subject/:courseId/:subjectId" element={<SubjectPage />} />
         <Route path="/os" element={<OSPage />} />
         <Route path="/dbms" element={<DBMSPage />} />
         <Route path="/c-programming" element={<CProgrammingPage />} />

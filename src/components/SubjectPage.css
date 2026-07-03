@@ -1,13 +1,13 @@
 .subject-page {
-  background: #0f1117;
+  background: var(--bg);
   min-height: 100vh;
-  color: white;
+  color: var(--text);
   padding-bottom: 60px;
 }
 
 .subject-hero {
-  background: linear-gradient(135deg, #111827 0%, #1a1f2e 100%);
-  border-bottom: 1px solid #252a38;
+  background: var(--hero-bg);
+  border-bottom: 1px solid var(--border);
   padding: 32px 20px 28px;
   text-align: center;
 }
@@ -28,10 +28,11 @@
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
+  color: var(--text);
 }
 
 .subject-hero p {
-  color: #8892a4;
+  color: var(--muted);
   font-size: 13px;
 }
 
@@ -43,9 +44,9 @@
 }
 
 .subject-mode-btn {
-  background: #1a1f2e;
-  border: 1px solid #252a38;
-  color: #8892a4;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
   border-radius: 8px;
   padding: 9px 20px;
   font-size: 13px;
@@ -55,25 +56,20 @@
   font-family: inherit;
 }
 
-.subject-mode-btn.active {
-  color: white;
-  border-color: currentColor;
-}
-
 .subject-unit-nav {
   display: flex;
   gap: 8px;
   padding: 16px 20px 0;
   overflow-x: auto;
-  border-bottom: 1px solid #252a38;
+  border-bottom: 1px solid var(--border);
   max-width: 800px;
   margin: 0 auto;
 }
 
 .subject-unit-btn {
   background: none;
-  border: 1px solid #252a38;
-  color: #8892a4;
+  border: 1px solid var(--border);
+  color: var(--muted);
   border-radius: 8px;
   padding: 7px 16px;
   font-size: 13px;
@@ -94,15 +90,17 @@
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 18px;
+  color: var(--text);
 }
 
 .sub-q-card {
-  background: #1a1f2e;
-  border: 1px solid #252a38;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   margin-bottom: 12px;
   overflow: hidden;
   transition: border-color 0.2s;
+  box-shadow: var(--shadow);
 }
 
 .sub-q-header {
@@ -128,13 +126,14 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
+  color: var(--text);
 }
 
 .sub-q-toggle {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #252a38;
+  background: var(--input-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,7 +144,7 @@
 .sub-q-toggle svg {
   width: 14px;
   height: 14px;
-  fill: white;
+  fill: var(--muted);
 }
 
 .sub-q-answer {
@@ -156,15 +155,15 @@
 
 .sub-q-answer-inner {
   padding: 18px 18px 20px;
-  border-top: 1px solid #252a38;
+  border-top: 1px solid var(--border);
   font-size: 13.5px;
   line-height: 1.75;
-  color: #c8d0e0;
+  color: var(--muted);
 }
 
 .no-content {
   text-align: center;
-  color: #8892a4;
+  color: var(--muted);
   padding: 40px 20px;
   font-size: 14px;
 }

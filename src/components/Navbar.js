@@ -1,13 +1,15 @@
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ theme, toggleTheme }) {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <span className="exam">Exam</span>
         <span className="edge">Edge</span>
       </div>
-      <div className="navbar-badge">BCA · KUK</div>
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {theme === 'light' ? '🌙' : '☀️'}
+      </button>
     </nav>
   );
 }

@@ -1,21 +1,21 @@
 .home {
-  background: #0f1117;
+  background: var(--bg);
   min-height: 100vh;
-  color: white;
+  color: var(--text);
 }
 
-/* HERO SECTION */
 .hero {
+  background: var(--hero-bg);
   text-align: center;
   padding: 60px 20px 40px;
-  border-bottom: 1px solid #252a38;
+  border-bottom: 1px solid var(--border);
 }
 
 .hero-badge {
   display: inline-block;
-  background: rgba(79,142,247,0.10);
-  color: #4f8ef7;
-  border: 1px solid #4f8ef7;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 6px;
   font-size: 11px;
   font-weight: 600;
@@ -26,22 +26,22 @@
 }
 
 .hero h1 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 12px;
+  color: var(--text);
 }
 
 .hero h1 span {
-  color: #4f8ef7;
+  color: var(--accent);
 }
 
 .hero p {
-  color: #8892a4;
+  color: var(--muted);
   font-size: 15px;
   margin-bottom: 30px;
 }
 
-/* SUBJECT GRID */
 .subjects-section {
   padding: 40px 20px;
   max-width: 900px;
@@ -51,6 +51,7 @@
 .subjects-section h2 {
   font-size: 20px;
   margin-bottom: 20px;
+  color: var(--text);
 }
 
 .subjects-grid {
@@ -60,36 +61,39 @@
 }
 
 .subject-card {
-  background: #1a1f2e;
-  border: 1px solid #252a38;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
 }
 
 .subject-card:hover {
-  border-color: #4f8ef7;
+  border-color: var(--accent);
   transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.15);
 }
 
 .subject-card h3 {
   font-size: 16px;
   margin-bottom: 6px;
+  color: var(--text);
 }
 
 .subject-card p {
-  color: #8892a4;
+  color: var(--muted);
   font-size: 12px;
 }
 
 .search-bar {
   width: 100%;
-  background: #1a1f2e;
-  border: 1px solid #252a38;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px 16px;
-  color: white;
+  color: var(--text);
   font-size: 14px;
   margin-bottom: 20px;
   font-family: inherit;
@@ -97,9 +101,9 @@
 
 .search-bar:focus {
   outline: none;
-  border-color: #4f8ef7;
+  border-color: var(--accent);
 }
 
 .search-bar::placeholder {
-  color: #8892a4;
+  color: var(--muted);
 }
