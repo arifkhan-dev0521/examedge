@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { subjectsData } from '../data/subjectsData';
 import './SubjectPage.css';
+import Breadcrumb from './Breadcrumb';
 
 function SubjectPage() {
-  const { subjectId } = useParams();
+  const { subjectId, courseId } = useParams();
   const navigate = useNavigate();
   const [openId, setOpenId] = useState(null);
   const [activeUnit, setActiveUnit] = useState(1);
@@ -37,6 +38,12 @@ function SubjectPage() {
 
   return (
     <div className="subject-page">
+        <Breadcrumb items={[
+//   { label: "Universities", path: "/" },
+  { label: "KUK", path: "/kuk" },
+  { label: subject.course, path: `/kuk/${courseId}` },
+  { label: subject.name }
+]} />
 
       <div className="subject-hero">
         <div

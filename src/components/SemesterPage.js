@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { coursesData } from '../data/courses';
 import './SemesterPage.css';
+import Breadcrumb from './Breadcrumb';
 
 function SemesterPage() {
   const [activeSem, setActiveSem] = useState(1);
@@ -19,6 +20,11 @@ function SemesterPage() {
 
   return (
     <div className="sem-page">
+      <Breadcrumb items={[
+  // { label: "Universities", path: "/" },
+  { label: "KUK", path: "/kuk" },
+  { label: course.name }
+]} />
       
       <div className="sem-hero">
         <h1>{course.name}</h1>

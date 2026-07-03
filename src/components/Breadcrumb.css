@@ -1,0 +1,32 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a, .breadcrumb span {
+  color: var(--muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb .current {
+  color: var(--text);
+  font-weight: 600;
+  cursor: default;
+}
+
+.breadcrumb .sep {
+  color: var(--muted);
+  opacity: 0.5;
+}

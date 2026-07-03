@@ -8,7 +8,7 @@ import DBMSPage from './components/DBMSPage';
 import CProgrammingPage from './components/CProgrammingPage';
 import SemesterPage from './components/SemesterPage';
 import CoursePage from './components/CoursePage';
-import FloatingBack from './components/FloatingBack';
+// import FloatingBack from './components/FloatingBack';
 import ComingSoon from './components/ComingSoon';
 import SubjectPage from './components/SubjectPage';
 import './theme.css';
@@ -20,11 +20,14 @@ function ScrollToTop() {
 }
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+  return localStorage.getItem('examedge-theme') || 'light';
+});
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('examedge-theme', theme);
+}, [theme]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
@@ -33,7 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <FloatingBack />
+      {/* <FloatingBack /> */}
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Home />} />

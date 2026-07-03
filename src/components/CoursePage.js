@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CoursePage.css';
+import Breadcrumb from './Breadcrumb';
 
 function CoursePage() {
   const navigate = useNavigate();
@@ -38,6 +39,10 @@ function CoursePage() {
 
   return (
     <div className="course-page">
+      <Breadcrumb items={[
+        // { label: "Universities", path: "/" },
+         { label: "KUK" }]} 
+         />
       
       <div className="course-hero">
         <h1>Kurukshetra <span>University</span></h1>
