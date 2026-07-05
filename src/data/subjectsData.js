@@ -9,36 +9,6 @@ export const subjectsData = {
       1: {
         title: "Introduction to Ethical Hacking",
         questions: [
-        //   {
-        //     id: 1,
-        //     marks: "2 Marks",
-        //     text: "Define ethical hacking and mention one role of an ethical hacker.",
-        //     answer: "Ethical hacking is the authorized practice of bypassing system security to identify vulnerabilities. An ethical hacker tests systems with permission to find weaknesses before malicious hackers do."
-        //   },
-        //   {
-        //     id: 2,
-        //     marks: "2 Marks",
-        //     text: "What is DNS interrogation?",
-        //     answer: "DNS interrogation is the process of querying DNS servers to gather information about a target's domain, such as IP addresses, mail servers, and subdomains."
-        //   },
-        //   {
-        //     id: 3,
-        //     marks: "2 Marks",
-        //     text: "What is a brute force attack?",
-        //     answer: "A brute force attack is a trial-and-error method used to decode passwords or encryption keys by systematically trying all possible combinations until the correct one is found."
-        //   },
-        //   {
-        //     id: 4,
-        //     marks: "2 Marks",
-        //     text: "Define SQL Injection.",
-        //     answer: "SQL Injection is a code injection attack where malicious SQL statements are inserted into input fields to manipulate the database, potentially gaining unauthorized access to data."
-        //   },
-        //   {
-        //     id: 5,
-        //     marks: "2 Marks",
-        //     text: "What is phishing in social engineering?",
-        //     answer: "Phishing is a social engineering technique where attackers send fraudulent emails or messages disguised as legitimate sources to trick users into revealing sensitive information."
-        //   },
           {
             id: 6,
             marks: "10 Marks",
@@ -107,39 +77,19 @@ export const subjectsData = {
     },
     yearWise: {
       2026: [
-        { id: 1, marks: "2 Marks", text: "Define ethical hacking and mention one role of an ethical hacker.", answer: "Ethical hacking is authorized security testing to find vulnerabilities before malicious hackers." },
-        { id: 2, marks: "2 Marks", text: "What is DNS interrogation?", answer: "Querying DNS servers to gather domain information like IP addresses and mail servers." },
-        { id: 3, marks: "2 Marks", text: "What is a brute force attack?", answer: "Trial-and-error method to decode passwords by trying all possible combinations." },
-        { id: 4, marks: "2 Marks", text: "Define SQL Injection.", answer: "Inserting malicious SQL into input fields to manipulate database." },
-        { id: 5, marks: "2 Marks", text: "What is phishing in social engineering?", answer: "Sending fraudulent messages disguised as legitimate to steal sensitive information." },
-        { id: 6, marks: "10 Marks", text: "Explain the phases of hacking in detail.", answer: "5 phases: Reconnaissance, Scanning, Gaining Access, Maintaining Access, Covering Tracks." },
-        { id: 7, marks: "10 Marks", text: "Discuss ethical hacking, types of hackers, and cyber laws.", answer: "White Hat, Black Hat, Grey Hat hackers. IT Act 2000 covers cybercrime in India." },
-        { id: 8, marks: "10 Marks", text: "Explain footprinting techniques and tools.", answer: "Active and passive footprinting using WHOIS, Nslookup, Google Dorking, Maltego." },
-        { id: 9, marks: "10 Marks", text: "Describe scanning and enumeration techniques.", answer: "Network, port, vulnerability scanning using Nmap, Netstat, enum4linux." },
-        {
-            id: 10,
-            marks: "10 Marks",
-            text: "Explain password cracking techniques and privilege escalation.",
-            answer: "Password cracking techniques: 1) Dictionary attack — uses wordlist of common passwords. 2) Brute force — tries all combinations. 3) Rainbow table — uses precomputed hash values. 4) Social engineering — tricks users into revealing passwords. Tools: John the Ripper, Hashcat. Privilege escalation is gaining higher access rights than initially granted, either vertically (user to admin) or horizontally (same level different user)."
-          },
-          {
-            id: 11,
-            marks: "10 Marks",
-            text: "Discuss malware types and common exploitation techniques.",
-            answer: "Malware types: Virus (attaches to files), Worm (self-replicating), Trojan (disguised as legitimate software), Ransomware (encrypts files for ransom), Spyware (secretly monitors user). Exploitation techniques: Buffer overflow, SQL injection, Cross-site scripting (XSS), Zero-day exploits. Tools: Metasploit Framework is commonly used for exploitation."
-          },
-          {
-            id: 12,
-            marks: "10 Marks",
-            text: "Explain OWASP Top 10 vulnerabilities.",
-            answer: "OWASP Top 10 are most critical web security risks: 1) Broken Access Control, 2) Cryptographic Failures, 3) Injection (SQL, NoSQL), 4) Insecure Design, 5) Security Misconfiguration, 6) Vulnerable Components, 7) Authentication Failures, 8) Software Integrity Failures, 9) Logging Failures, 10) Server-Side Request Forgery (SSRF)."
-          },
-          {
-            id: 13,
-            marks: "10 Marks",
-            text: "Describe penetration testing phases and report writing.",
-            answer: "Penetration testing phases: 1) Planning — define scope and goals. 2) Reconnaissance — gather information. 3) Scanning — identify vulnerabilities. 4) Exploitation — attempt to exploit vulnerabilities. 5) Post-exploitation — determine impact. 6) Reporting — document findings. Report includes Executive Summary (for management), Technical Details (for IT team), Risk Rating, and Remediation steps."
-          }
+        { id: 1, section: "Compulsory Question", marks: "2 Marks", text: "Define ethical hacking and mention one role of an ethical hacker.", answer: "Ethical hacking is authorized security testing to find vulnerabilities before malicious hackers." },
+        { id: 2, section: "Compulsory Question", marks: "2 Marks", text: "What is DNS interrogation?", answer: "Querying DNS servers to gather domain information like IP addresses and mail servers." },
+        { id: 3, section: "Compulsory Question", marks: "2 Marks", text: "What is a brute force attack?", answer: "Trial-and-error method to decode passwords by trying all possible combinations." },
+        { id: 4, section: "Compulsory Question", marks: "2 Marks", text: "Define SQL Injection.", answer: "Inserting malicious SQL into input fields to manipulate database." },
+        { id: 5, section: "Compulsory Question", marks: "2 Marks", text: "What is phishing in social engineering?", answer: "Sending fraudulent messages disguised as legitimate to steal sensitive information." },
+        { id: 6, section: "Unit 1", marks: "10 Marks", text: "Explain the phases of hacking in detail.", answer: "5 phases: Reconnaissance, Scanning, Gaining Access, Maintaining Access, Covering Tracks." },
+        { id: 7, section: "Unit 1", marks: "10 Marks", text: "Discuss ethical hacking, types of hackers, and cyber laws.", answer: "White Hat, Black Hat, Grey Hat hackers. IT Act 2000 covers cybercrime in India." },
+        { id: 8, section: "Unit 2", marks: "10 Marks", text: "Explain footprinting techniques and tools.", answer: "Active and passive footprinting using WHOIS, Nslookup, Google Dorking, Maltego." },
+        { id: 9, section: "Unit 2", marks: "10 Marks", text: "Describe scanning and enumeration techniques.", answer: "Network, port, vulnerability scanning using Nmap, Netstat, enum4linux." },
+        { id: 10, section: "Unit 3", marks: "10 Marks", text: "Explain password cracking techniques and privilege escalation.", answer: "Dictionary attack, brute force, rainbow table, social engineering. Tools: John the Ripper, Hashcat. Privilege escalation gains higher access rights." },
+        { id: 11, section: "Unit 3", marks: "10 Marks", text: "Discuss malware types and common exploitation techniques.", answer: "Virus, Worm, Trojan, Ransomware, Spyware. Exploitation: Buffer overflow, SQL injection, XSS, Zero-day. Tool: Metasploit." },
+        { id: 12, section: "Unit 4", marks: "10 Marks", text: "Explain OWASP Top 10 vulnerabilities.", answer: "Broken Access Control, Cryptographic Failures, Injection, Insecure Design, Security Misconfiguration, and more." },
+        { id: 13, section: "Unit 4", marks: "10 Marks", text: "Describe penetration testing phases and report writing.", answer: "Planning, Reconnaissance, Scanning, Exploitation, Post-exploitation, Reporting." }
       ]
     }
   },
@@ -153,9 +103,6 @@ export const subjectsData = {
       1: {
         title: "Introduction to Cyber Forensics",
         questions: [
-        //   { id: 1, marks: "2 Marks", text: "Define Digital Forensics.", answer: "Digital Forensics is the process of collecting, preserving, analyzing, and presenting digital evidence from electronic devices in a legally acceptable manner." },
-        //   { id: 2, marks: "2 Marks", text: "What is Hashing?", answer: "Hashing is a process of converting data into a fixed-size string using algorithms like MD5 or SHA. In forensics, it verifies data integrity — if hash matches, data is unmodified." },
-        //   { id: 3, marks: "2 Marks", text: "What is NTFS?", answer: "NTFS (New Technology File System) is Microsoft's advanced file system that supports large files, encryption, compression, and detailed access permissions." },
           { id: 4, marks: "10 Marks", text: "How Digital Forensic is used in Incident Response?", answer: "Digital forensics in incident response involves: 1) Identification — detect the incident. 2) Collection — gather evidence without altering it. 3) Preservation — maintain chain of custody. 4) Analysis — examine evidence for clues. 5) Documentation — record all findings. 6) Presentation — present findings in court if needed." },
           { id: 5, marks: "10 Marks", text: "Differentiate between Incident Response and Digital Forensics.", answer: "Incident Response focuses on containing and recovering from security incidents quickly. Digital Forensics focuses on collecting and analyzing evidence after an incident. IR is reactive and time-sensitive; forensics is methodical and evidence-focused." }
         ]
@@ -184,19 +131,19 @@ export const subjectsData = {
     },
     yearWise: {
       2026: [
-        { id: 1, marks: "2 Marks", text: "Define Digital Forensics.", answer: "Process of collecting, preserving, analyzing digital evidence in legally acceptable manner." },
-        { id: 2, marks: "2 Marks", text: "What is Hashing?", answer: "Converting data into fixed-size string to verify integrity using MD5 or SHA." },
-        { id: 3, marks: "2 Marks", text: "What is NTFS?", answer: "New Technology File System supporting large files, encryption and access permissions." },
-        { id: 4, marks: "2 Marks", text: "What is FTK Imager?", answer: "FTK Imager is a free digital forensic imaging and evidence preview tool developed by Exterro. It is widely used by digital forensic investigators, cybersecurity professionals, law enforcement agencies, and incident response teams to create forensic copies (images) of storage devices without altering the original data." },
-        { id: 5, marks: "2 Marks", text: "What is Forensic Cloning?", answer: "Forensic Cloning is the process of creating an exact bit-by-bit copy of a storage device, including all files, deleted data, free space, and system information, without modifying the original evidence. It is used in digital forensics to preserve data integrity for investigation and legal purposes." },
-        { id: 6, marks: "10 Marks", text: "How Digital Forensic is used in Incident Response?", answer: "Digital forensics in incident response involves: 1) Identification — detect the incident. 2) Collection — gather evidence without altering it. 3) Preservation — maintain chain of custody. 4) Analysis — examine evidence for clues. 5) Documentation — record all findings. 6) Presentation — present findings in court if needed." },
-        { id: 7, marks: "10 Marks", text: "Differentiate between Incident Response and Digital Forensics.", answer: "Incident Response focuses on containing and recovering from security incidents quickly. Digital Forensics focuses on collecting and analyzing evidence after an incident. IR is reactive and time-sensitive; forensics is methodical and evidence-focused." },
-        { id: 8, marks: "10 Marks", text: "Explain crucial components in Cloning and key Forensic Cloning techniques & methods of Data acquisition.", answer: "Forensic cloning creates exact bit-by-bit copy of storage media. Key components: Write blocker (prevents modification), Hash verification (ensures integrity). Techniques: Disk imaging (dd command), Live acquisition (from running system). Tools: FTK Imager, Autopsy, dd." },
-        { id: 9, marks: "10 Marks", text: "What are the key features and benefits of NTFS? Give comparison between NTFS with FAT.", answer: "NTFS features: Large file support (>4GB), Encryption (EFS), Compression, Access control lists, Journaling. FAT vs NTFS: FAT has no encryption/permissions, simpler structure. NTFS is more secure and reliable for modern systems." },
-        { id: 10, marks: "10 Marks", text: "What are the key issues in Data Ownership and Jurisdiction? Explain the legal and technical hurdles.", answer: "Data ownership issues: Who owns cloud data? Legal jurisdiction varies by country. Technical hurdles: Encrypted data, cloud storage across borders, volatile data loss. Legal hurdles: Different cybercrime laws in different countries, privacy regulations like GDPR." },
-        { id: 11, marks: "10 Marks", text: "Define Wireshark. Explain in detail the working of Wireshark.", answer: "Wireshark is a network protocol analyzer used to capture and analyze network traffic in real-time. Working: Captures packets from network interface, decodes protocols (TCP/IP, HTTP, DNS), displays packet details (source, destination, payload). Used for troubleshooting, security analysis, and forensic investigation." },
-        { id: 12, marks: "10 Marks", text: "Write short note on Incident Response lifecycle.", answer: "Incident Response lifecycle has 6 phases: 1) Preparation — policies, tools ready. 2) Identification — detect incident. 3) Containment — limit damage. 4) Eradication — remove threat. 5) Recovery — restore systems. 6) Lessons Learned — improve for future." },
-        { id: 13, marks: "10 Marks", text: "Define Forensic report writing and presenting evidence. What are the key principles?", answer: "Forensic report must be: Accurate (factual only), Clear (understandable to non-technical), Complete (all findings included), Objective (unbiased). Key principles: Chain of custody maintained, Evidence integrity verified through hashing, All steps documented." }
+        { id: 1, section: "Compulsory Question", marks: "2 Marks", text: "Define Digital Forensics.", answer: "Process of collecting, preserving, analyzing digital evidence in legally acceptable manner." },
+        { id: 2, section: "Compulsory Question", marks: "2 Marks", text: "What is Hashing?", answer: "Converting data into fixed-size string to verify integrity using MD5 or SHA." },
+        { id: 3, section: "Compulsory Question", marks: "2 Marks", text: "What is NTFS?", answer: "New Technology File System supporting large files, encryption and access permissions." },
+        { id: 4, section: "Compulsory Question", marks: "2 Marks", text: "What is FTK Imager?", answer: "A free digital forensic imaging and evidence preview tool used to create forensic copies of storage devices without altering original data." },
+        { id: 5, section: "Compulsory Question", marks: "2 Marks", text: "What is Forensic Cloning?", answer: "Creating an exact bit-by-bit copy of a storage device, including deleted data and free space, without modifying original evidence." },
+        { id: 6, section: "Unit 1", marks: "10 Marks", text: "How Digital Forensic is used in Incident Response?", answer: "Identification, Collection, Preservation, Analysis, Documentation, Presentation." },
+        { id: 7, section: "Unit 1", marks: "10 Marks", text: "Differentiate between Incident Response and Digital Forensics.", answer: "IR is reactive and time-sensitive; forensics is methodical and evidence-focused." },
+        { id: 8, section: "Unit 2", marks: "10 Marks", text: "Explain crucial components in Cloning and key Forensic Cloning techniques & methods of Data acquisition.", answer: "Write blocker, hash verification, disk imaging, live acquisition. Tools: FTK Imager, Autopsy, dd." },
+        { id: 9, section: "Unit 2", marks: "10 Marks", text: "What are the key features and benefits of NTFS? Give comparison between NTFS with FAT.", answer: "NTFS supports large files, encryption, compression, journaling — more secure than FAT." },
+        { id: 10, section: "Unit 3", marks: "10 Marks", text: "What are the key issues in Data Ownership and Jurisdiction? Explain the legal and technical hurdles.", answer: "Cloud data ownership, cross-border jurisdiction, encryption challenges, differing cybercrime laws." },
+        { id: 11, section: "Unit 3", marks: "10 Marks", text: "Define Wireshark. Explain in detail the working of Wireshark.", answer: "Network protocol analyzer capturing and decoding packets in real-time for troubleshooting and forensic investigation." },
+        { id: 12, section: "Unit 4", marks: "10 Marks", text: "Write short note on Incident Response lifecycle.", answer: "Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned." },
+        { id: 13, section: "Unit 4", marks: "10 Marks", text: "Define Forensic report writing and presenting evidence. What are the key principles?", answer: "Accurate, Clear, Complete, Objective reporting with chain of custody maintained." }
       ]
     }
   },
@@ -240,8 +187,16 @@ export const subjectsData = {
     },
     yearWise: {
       2026: [
-        { id: 1, marks: "2 Marks", text: "Define cloud deployment models.", answer: "Public, private, hybrid, multi-cloud models defining infrastructure setup and access." },
-        { id: 2, marks: "2 Marks", text: "What is Infrastructure as Code (IaC)?", answer: "Managing infrastructure through configuration files instead of manual processes." }
+        { id: 1, section: "Compulsory Question", marks: "2 Marks", text: "Define cloud deployment models.", answer: "Public, private, hybrid, multi-cloud models defining infrastructure setup and access." },
+        { id: 2, section: "Compulsory Question", marks: "2 Marks", text: "What is Infrastructure as Code (IaC)?", answer: "Managing infrastructure through configuration files instead of manual processes." },
+        { id: 3, section: "Unit 1", marks: "10 Marks", text: "Explain cloud deployment models with advantages and use cases. Also compare AWS and Azure.", answer: "Public, private, hybrid, multi-cloud models with AWS vs Azure comparison." },
+        { id: 4, section: "Unit 1", marks: "10 Marks", text: "Describe Storage options: Azure Blob, file & block storage. Also explain Subnets & load balancer.", answer: "Blob, file, block storage types; subnet segmentation and load balancing explained." },
+        { id: 5, section: "Unit 2", marks: "10 Marks", text: "Explain AWS Cloud Formation with Stacks and Templates.", answer: "Templates define resources; stacks are collections of resources created from templates." },
+        { id: 6, section: "Unit 2", marks: "10 Marks", text: "Explain AWS CLI and Azure CLI with automation use cases.", answer: "Command-line tools for managing cloud resources, used in automation scripts and CI/CD." },
+        { id: 7, section: "Unit 3", marks: "10 Marks", text: "Explain configuration management tools: Ansible, Chef, Puppet.", answer: "Ansible (agentless, YAML), Chef (Ruby recipes), Puppet (declarative, large scale)." },
+        { id: 8, section: "Unit 3", marks: "10 Marks", text: "Write short note on CI/CD concepts and AWS CodePipeline & CodeBuild.", answer: "CI/CD automates testing and deployment; CodePipeline orchestrates stages, CodeBuild compiles and tests." },
+        { id: 9, section: "Unit 4", marks: "10 Marks", text: "Explain cloud monitoring tools: AWS CloudWatch and Azure Monitor.", answer: "Both monitor resources, collect metrics/logs, provide alerts and dashboards." },
+        { id: 10, section: "Unit 4", marks: "10 Marks", text: "Explain IAM roles & policies and Disaster recovery planning.", answer: "IAM controls access; DR planning uses RPO/RTO and strategies like backup, pilot light, warm standby." }
       ]
     }
   },
@@ -288,8 +243,19 @@ export const subjectsData = {
     },
     yearWise: {
       2026: [
-        { id: 1, marks: "2 Marks", text: "Define Distributed ledger.", answer: "Database shared across multiple locations with no central authority." },
-        { id: 2, marks: "2 Marks", text: "What is Ethereum Virtual Machine?", answer: "Computation engine in Ethereum that executes smart contracts in isolated environment." }
+        { id: 1, section: "Compulsory Question", marks: "2 Marks", text: "Define Distributed ledger.", answer: "Database shared across multiple locations with no central authority." },
+        { id: 2, section: "Compulsory Question", marks: "2 Marks", text: "What is Ethereum Virtual Machine?", answer: "Computation engine in Ethereum that executes smart contracts in isolated environment." },
+        { id: 3, section: "Compulsory Question", marks: "2 Marks", text: "What is Consensus?", answer: "Mechanism for nodes to agree on validity of transactions, e.g. PoW, PoS." },
+        { id: 4, section: "Compulsory Question", marks: "2 Marks", text: "What is Digital Signature?", answer: "Cryptographic technique verifying authenticity using public-private key pairs." },
+        { id: 5, section: "Compulsory Question", marks: "2 Marks", text: "What is Mining Pool?", answer: "Group of miners combining resources to increase chances of mining a block." },
+        { id: 6, section: "Unit 1", marks: "10 Marks", text: "Explain Centralized and Decentralized Blockchain systems.", answer: "Centralized has single authority; decentralized distributes data across nodes, more transparent but slower." },
+        { id: 7, section: "Unit 1", marks: "10 Marks", text: "Explain the applications of Blockchain in Supply chain.", answer: "Product tracking, prevents counterfeiting, real-time visibility — used by Walmart, Maersk." },
+        { id: 8, section: "Unit 2", marks: "10 Marks", text: "Explain structure of block in detail.", answer: "Block Header, Transaction Data, Block Hash — chained via previous block hash." },
+        { id: 9, section: "Unit 2", marks: "10 Marks", text: "Explain different security threats in Blockchain and measures for Protection and Mitigation.", answer: "51% attack, Sybil attack, smart contract vulnerabilities — mitigated via audits, multi-sig wallets." },
+        { id: 10, section: "Unit 3", marks: "10 Marks", text: "Briefly explain the different layers of Blockchain.", answer: "Layer 0 (internet), Layer 1 (main blockchain), Layer 2 (scalability), Layer 3 (applications)." },
+        { id: 11, section: "Unit 3", marks: "10 Marks", text: "Explain Transaction Workflow in Bitcoin.", answer: "Initiate, broadcast, verify, include in block, add to chain, confirm after 6 confirmations." },
+        { id: 12, section: "Unit 4", marks: "10 Marks", text: "What are the different limitations of Blockchain?", answer: "Scalability, energy consumption, irreversibility, regulatory uncertainty, storage, latency." },
+        { id: 13, section: "Unit 4", marks: "10 Marks", text: "Explain any case study of e-Governance initiatives using Blockchain in any Indian state.", answer: "Andhra Pradesh land records, Telangana certificate verification using blockchain." }
       ]
     }
   },
@@ -336,8 +302,19 @@ export const subjectsData = {
     },
     yearWise: {
       2026: [
-        { id: 1, marks: "2 Marks", text: "Write any two differences between UI and UX.", answer: "UI focuses on visual elements; UX focuses on overall user experience and journey." },
-        { id: 2, marks: "2 Marks", text: "Why is user-centered design important?", answer: "Ensures product meets user needs, reduces errors, increases satisfaction." }
+        { id: 1, section: "Compulsory Question", marks: "2 Marks", text: "Write any two differences between UI and UX.", answer: "UI focuses on visual elements; UX focuses on overall user experience and journey." },
+        { id: 2, section: "Compulsory Question", marks: "2 Marks", text: "Why is user-centered design important?", answer: "Ensures product meets user needs, reduces errors, increases satisfaction." },
+        { id: 3, section: "Compulsory Question", marks: "2 Marks", text: "What are frames and shapes in Figma?", answer: "Frames are containers like artboards; shapes are basic geometric UI elements." },
+        { id: 4, section: "Compulsory Question", marks: "2 Marks", text: "What is the role of transitions and animations in prototyping?", answer: "Simulate real app behaviour and help users understand navigation flow." },
+        { id: 5, section: "Compulsory Question", marks: "2 Marks", text: "What is included in a mini design project presentation?", answer: "Problem statement, user research, wireframes, prototype screens, design decisions." },
+        { id: 6, section: "Unit 1", marks: "10 Marks", text: "Define UI and UX design. Explain the major differences between UI and UX with examples.", answer: "UI is visual design; UX is the entire user journey. Both essential for good products." },
+        { id: 7, section: "Unit 1", marks: "10 Marks", text: "Explain the basic design principles used in UI/UX design. How do these principles improve usability?", answer: "Consistency, Visual Hierarchy, Contrast, Alignment, White Space, Feedback." },
+        { id: 8, section: "Unit 2", marks: "10 Marks", text: "Introduce Figma as a design tool. Explain its interface and commonly used tools.", answer: "Web-based collaborative tool with frames, shapes, components, prototyping features." },
+        { id: 9, section: "Unit 2", marks: "10 Marks", text: "What is a wireframe? Explain how to draw wireframes for a simple website or mobile application using Figma.", answer: "Low-fidelity layout skeleton; created using frames, rectangles, and text placeholders." },
+        { id: 10, section: "Unit 3", marks: "10 Marks", text: "Explain the process of creating multiple screens for a web or mobile application. Why is consistency important across screens?", answer: "Define user flow, create frames, use component library, maintain consistent spacing." },
+        { id: 11, section: "Unit 3", marks: "10 Marks", text: "Explain how interaction testing is performed in Figma to check usability of a design.", answer: "Create prototype connections, set triggers/animations, share and collect feedback." },
+        { id: 12, section: "Unit 4", marks: "10 Marks", text: "Describe how designers improve designs based on feedback with suitable examples.", answer: "Share prototype, collect feedback, identify pain points, implement improvements, retest." },
+        { id: 13, section: "Unit 4", marks: "10 Marks", text: "Describe the process of exporting assets and design files in Figma. Why is proper export important for developers?", answer: "Select element, export in desired format and scale; gives developers exact specifications." }
       ]
     }
   },
@@ -360,7 +337,16 @@ export const subjectsData = {
       3: { title: "File System", questions: [{ id: 5, marks: "2 Marks", text: "What is a File System?", answer: "Method to organize, store, retrieve files on storage devices." }] },
       4: { title: "Deadlock & Security", questions: [{ id: 6, marks: "5 Marks", text: "What is Deadlock?", answer: "Situation where processes block each other forever. Conditions: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait." }] }
     },
-    yearWise: {}
+    yearWise: {
+      2026: [
+        { id: 1, section: "Unit 1", marks: "2 Marks", text: "What is an Operating System?", answer: "An OS is system software acting as interface between user and hardware, managing resources and providing services." },
+        { id: 2, section: "Unit 1", marks: "5 Marks", text: "Explain CPU Scheduling with its types.", answer: "CPU Scheduling decides which process gets CPU. Types: FCFS, SJF, Priority, Round Robin, SRTF." },
+        { id: 3, section: "Unit 1", marks: "10 Marks", text: "What is a Process? Explain Process States.", answer: "A process is a program in execution. 5 states: New, Ready, Running, Waiting, Terminated." },
+        { id: 4, section: "Unit 2", marks: "2 Marks", text: "What is Paging?", answer: "Memory management dividing process into fixed-size pages mapped to physical frames." },
+        { id: 5, section: "Unit 3", marks: "2 Marks", text: "What is a File System?", answer: "Method to organize, store, retrieve files on storage devices." },
+        { id: 6, section: "Unit 4", marks: "5 Marks", text: "What is Deadlock?", answer: "Situation where processes block each other forever. Conditions: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait." }
+      ]
+    }
   },
   "dbms": {
     name: "DBMS",
@@ -374,7 +360,14 @@ export const subjectsData = {
       3: { title: "SQL", questions: [{ id: 3, marks: "2 Marks", text: "Difference between DDL and DML?", answer: "DDL defines structure (CREATE, ALTER). DML manipulates data (INSERT, UPDATE, DELETE)." }] },
       4: { title: "Transactions", questions: [{ id: 4, marks: "5 Marks", text: "What is a Transaction? Explain ACID.", answer: "Sequence of operations as single unit. ACID: Atomicity, Consistency, Isolation, Durability." }] }
     },
-    yearWise: {}
+    yearWise: {
+      2026: [
+        { id: 1, section: "Unit 1", marks: "2 Marks", text: "What is DBMS?", answer: "Software managing databases for storage, retrieval, manipulation with security and reduced redundancy." },
+        { id: 2, section: "Unit 2", marks: "5 Marks", text: "What is Normalization?", answer: "Organizing data to reduce redundancy. 1NF, 2NF, 3NF progressive normal forms." },
+        { id: 3, section: "Unit 3", marks: "2 Marks", text: "Difference between DDL and DML?", answer: "DDL defines structure (CREATE, ALTER). DML manipulates data (INSERT, UPDATE, DELETE)." },
+        { id: 4, section: "Unit 4", marks: "5 Marks", text: "What is a Transaction? Explain ACID.", answer: "Sequence of operations as single unit. ACID: Atomicity, Consistency, Isolation, Durability." }
+      ]
+    }
   },
   "c-programming": {
     name: "Computer Fundamentals & C++",
@@ -388,6 +381,13 @@ export const subjectsData = {
       3: { title: "Functions & Pointers", questions: [{ id: 3, marks: "5 Marks", text: "What is a Pointer?", answer: "Variable storing memory address of another variable." }] },
       4: { title: "Structures & File Handling", questions: [{ id: 4, marks: "5 Marks", text: "What is a Structure in C?", answer: "User-defined data type grouping different data types under one name." }] }
     },
-    yearWise: {}
+    yearWise: {
+      2026: [
+        { id: 1, section: "Unit 1", marks: "2 Marks", text: "Difference between Compiler and Interpreter?", answer: "Compiler converts whole code at once. Interpreter executes line by line." },
+        { id: 2, section: "Unit 2", marks: "2 Marks", text: "What is an Array?", answer: "Collection of same data type elements in contiguous memory locations." },
+        { id: 3, section: "Unit 3", marks: "5 Marks", text: "What is a Pointer?", answer: "Variable storing memory address of another variable." },
+        { id: 4, section: "Unit 4", marks: "5 Marks", text: "What is a Structure in C?", answer: "User-defined data type grouping different data types under one name." }
+      ]
+    }
   }
 };

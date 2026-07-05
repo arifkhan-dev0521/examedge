@@ -175,34 +175,64 @@ function SubjectPage() {
           </div>
 
           <div className="subject-content">
-            <h2 className="subject-unit-heading">{activeYear} — Full Paper</h2>
-            {questions.length === 0 ? (
-              <div className="no-content">Paper coming soon.</div>
-            ) : (
-              questions.map((q) => (
-                <div key={q.id} className="sub-q-card" style={openId === q.id ? { borderColor: color } : {}}>
-                  <div className="sub-q-header" onClick={() => toggle(q.id)}>
-                    <div
-                      className="sub-q-marks"
-                      style={{ background: `${color}18`, color: color, borderColor: color }}
-                    >
-                      {q.marks}
-                    </div>
-                    <div className="sub-q-text">{q.text}</div>
-                    <div
-                      className="sub-q-toggle"
-                      style={openId === q.id ? { background: color, transform: 'rotate(180deg)' } : {}}
-                    >
-                      <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-                    </div>
+  <h2 className="subject-unit-heading">{activeYear} — Question Paper</h2>
+  {questions.length === 0 ? (
+    <div className="no-content">Paper coming soon.</div>
+  ) : (
+    (() => {
+      const grouped = {};
+      questions.forEach((q) => {
+        const sec = q.section || "Questions";
+        if (!grouped[sec]) grouped[sec] = [];
+        grouped[sec].push(q);
+      });
+
+      let qNum = 0;
+
+      return Object.keys(grouped).map((sectionName) => (
+        <div key={sectionName} style={{ marginBottom: '28px' }}>
+          <div style={{
+            fontSize: '13px',
+            fontWeight: '700',
+            color: color,
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginBottom: '12px',
+            paddingBottom: '8px',
+            borderBottom: `2px solid ${color}30`
+          }}>
+            {sectionName}
+          </div>
+          {grouped[sectionName].map((q) => {
+            qNum++;
+            return (
+              <div key={q.id} className="sub-q-card" style={openId === q.id ? { borderColor: color } : {}}>
+                <div className="sub-q-header" onClick={() => toggle(q.id)}>
+                  <div
+                    className="sub-q-marks"
+                    style={{ background: `${color}18`, color: color, borderColor: color }}
+                  >
+                    Q{qNum} · {q.marks}
                   </div>
-                  <div className="sub-q-answer" style={{ maxHeight: openId === q.id ? '500px' : '0' }}>
-                    <div className="sub-q-answer-inner">{q.answer}</div>
+                  <div className="sub-q-text">{q.text}</div>
+                  <div
+                    className="sub-q-toggle"
+                    style={openId === q.id ? { background: color, transform: 'rotate(180deg)' } : {}}
+                  >
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
+                <div className="sub-q-answer" style={{ maxHeight: openId === q.id ? '500px' : '0' }}>
+                  <div className="sub-q-answer-inner">{q.answer}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ));
+    })()
+  )}
+</div>
         </>
       )}
     </div>

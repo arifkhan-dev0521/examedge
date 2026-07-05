@@ -12,7 +12,7 @@ import CoursePage from './components/CoursePage';
 import ComingSoon from './components/ComingSoon';
 import SubjectPage from './components/SubjectPage';
 import './theme.css';
-import { uploadAllSubjects } from './uploadData';
+// import { uploadAllSubjects } from './uploadData';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
