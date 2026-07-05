@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { subjectsData } from '../data/subjectsData';
-import './SubjectPage.css';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 import Breadcrumb from './Breadcrumb';
+import './SubjectPage.css';
 
 function SubjectPage() {
   const { subjectId, courseId } = useParams();
@@ -11,13 +12,46 @@ function SubjectPage() {
   const [activeUnit, setActiveUnit] = useState(1);
   const [viewMode, setViewMode] = useState('unit');
   const [activeYear, setActiveYear] = useState(null);
+  const [subject, setSubject] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const subject = subjectsData[subjectId];
+  useEffect(() => {
+    async function fetchSubject() {
+      try {
+        const docRef = doc(db, 'subjects', subjectId);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          setSubject(docSnap.data());
+        } else {
+          navigate('/coming-soon');
+        }
+      } catch (error) {
+        console.error('Error fetching subject:', error);
+        navigate('/coming-soon');
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchSubject();
+  }, [subjectId, navigate]);
 
-  if (!subject) {
-    navigate('/coming-soon');
-    return null;
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        color: 'var(--text)'
+      }}>
+        Loading...
+      </div>
+    );
   }
+
+  if (!subject) return null;
 
   const color = subject.color;
   const units = subject.units;
@@ -38,12 +72,11 @@ function SubjectPage() {
 
   return (
     <div className="subject-page">
-        <Breadcrumb items={[
-//   { label: "Universities", path: "/" },
-  { label: "KUK", path: "/kuk" },
-  { label: subject.course, path: `/kuk/${courseId}` },
-  { label: subject.name }
-]} />
+      <Breadcrumb items={[
+        { label: "KUK", path: "/kuk" },
+        { label: subject.course, path: `/kuk/${courseId}` },
+        { label: subject.name }
+      ]} />
 
       <div className="subject-hero">
         <div
@@ -172,7 +205,6 @@ function SubjectPage() {
           </div>
         </>
       )}
-
     </div>
   );
 }
