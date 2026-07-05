@@ -14,7 +14,7 @@ function CoursePage() {
     categories: [
       { name: "BCA General", path: "/kuk/bca-general" },
       { name: "BCA CTIS", path: "/kuk/bca-ctis" },
-      { name: "BCA AI", path: "/coming-soon" }
+      { name: "BCA AI", path: "/kuk/bca-ai" }
     ] 
   },
   { name: "BTech", categories: [

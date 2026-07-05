@@ -51,15 +51,17 @@ function SemesterPage() {
         ) : (
           <div className="sem-subject-grid">
             {subjects.map((subject) => (
-              <div
-                key={subject.code}
-                className="sem-subject-card"
-                onClick={() => navigate(`/subject/${courseId}/${subject.path}`)}
-              >
-                <h3>{subject.name}</h3>
-                <p>{subject.code} · {subject.units} Units</p>
-              </div>
-            ))}
+  <div
+    key={subject.code}
+    className="sem-subject-card"
+    onClick={() => navigate(subject.path ? `/subject/${courseId}/${subject.path}` : '/coming-soon')}
+    style={{ opacity: subject.path ? 1 : 0.6 }}
+  >
+    <h3>{subject.name}</h3>
+    <p>{subject.code} · {subject.units} Units {subject.major && '· Major'}</p>
+    {!subject.path && <p style={{ color: '#fbbf24', marginTop: '4px', fontSize: '11px' }}>Coming Soon</p>}
+  </div>
+))}
           </div>
         )}
       </div>
