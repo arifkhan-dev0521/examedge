@@ -39,7 +39,7 @@ function App() {
       <ScrollToTop />
       {/* <FloatingBack /> */}
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <button 
+      {/* <button 
   onClick={async () => {
     const result = await uploadAllSubjects();
     alert(result.success ? `Uploaded ${result.count} subjects!` : `Error: ${result.error}`);
@@ -47,7 +47,7 @@ function App() {
   style={{ position: 'fixed', top: '70px', right: '10px', zIndex: 999, padding: '10px', background: 'green', color: 'white', border: 'none', borderRadius: '8px' }}
 >
   Upload to Firebase
-</button>
+</button> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kuk" element={<CoursePage />} />
