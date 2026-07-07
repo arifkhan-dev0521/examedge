@@ -18,7 +18,7 @@ export const coursesData = {
     2: {
       subjects: [
         { name: "Object Oriented Programming Using C++", code: "BCA-CTS-201", major: true, units: 4, path: null },
-        { name: "Introduction to Web Technologies", code: "BCA-CTS-202", major: true, units: 4, path: null },
+        { name: "Introduction to Web Technologies", code: "BCA-CTS-202", major: true, units: 4, path: "web-technologies" },
         { name: "Concepts of Operating Systems", code: "BCA-CTS-203", major: true, units: 4, path: null },
         { name: "Mathematical Foundations for Computer Science-II", code: "BCA-CTS-204", major: true, units: 4, path: null },
         { name: "English Language and Communication Level-2", code: "B23-AEC-211", major: false, units: 4, path: null },
@@ -87,7 +87,7 @@ export const coursesData = {
     2: {
       subjects: [
         { name: "Object Oriented Programming Using C++", code: "BCA-CAI-201", major: true, units: 4, path: null },
-        { name: "Introduction to Web Technologies", code: "BCA-CAI-202", major: true, units: 4, path: null },
+        { name: "Introduction to Web Technologies", code: "BCA-CAI-202", major: true, units: 4, path: "web-technologies" },
         { name: "Concepts of Operating Systems", code: "BCA-CAI-203", major: true, units: 4, path: null },
         { name: "Mathematical Foundations for Computer Science-II", code: "BCA-CAI-204", major: true, units: 4, path: null },
         { name: "English Language and Communication Level-2", code: "B23-AEC-211", major: false, units: 4, path: null },
@@ -151,7 +151,11 @@ export const coursesData = {
           }
         ]
       },
-      2: { subjects: [] },
+      2: { 
+  subjects: [
+    { name: "Introduction to Web Technologies", code: "B23-CAP-202", major: true, units: 4, path: "web-technologies" }
+  ] 
+},
       3: {
         subjects: [
           {
