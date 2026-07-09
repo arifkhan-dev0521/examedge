@@ -1,0 +1,76 @@
+.about-page {
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+}
+
+.about-hero {
+  text-align: center;
+  padding: 48px 20px 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Fraunces', serif;
+  margin: 0 auto 16px;
+}
+
+.about-hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.about-role {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.about-content {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 36px 20px 60px;
+}
+
+.about-block {
+  margin-bottom: 32px;
+}
+
+.about-block h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.about-block p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.about-back {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.about-back:hover { border-color: var(--accent); }

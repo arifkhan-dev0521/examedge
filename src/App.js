@@ -11,6 +11,7 @@ import CoursePage from './components/CoursePage';
 // import FloatingBack from './components/FloatingBack';
 import ComingSoon from './components/ComingSoon';
 import SubjectPage from './components/SubjectPage';
+import About from './components/About';
 import './theme.css';
 // import { uploadAllSubjects } from './uploadData';
 
@@ -57,6 +58,7 @@ function App() {
         <Route path="/os" element={<OSPage />} />
         <Route path="/dbms" element={<DBMSPage />} />
         <Route path="/c-programming" element={<CProgrammingPage />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );
