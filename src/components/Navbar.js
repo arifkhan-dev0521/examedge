@@ -18,5 +18,5 @@ export default Navbar;
 
 
 // git add . 
-// git commit -m "Added university part just below  the hero section" 
+// git commit -m "Update course page with icons" 
 // git push
