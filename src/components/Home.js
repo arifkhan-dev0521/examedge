@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import {
   FaShieldAlt, FaGlobe, FaMicrochip, FaDatabase, FaUserShield,
   FaFileAlt, FaPen, FaBookOpen, FaMobileAlt, FaGift,
-  FaCheckCircle, FaBolt, FaHeart, FaArrowRight, FaSearch, FaStar
+  FaCheckCircle, FaBolt, FaHeart, FaArrowRight, FaSearch, FaStar,
+  FaUniversity, FaInstagram, FaFacebook, FaGithub, FaLinkedin,
+  FaYoutube, FaEnvelope, FaPhoneAlt
 } from 'react-icons/fa';
 import './Home.css';
 
@@ -21,10 +23,10 @@ function Home() {
   const uniRef = useRef(null);
 
   const universities = [
-    { name: "KUK", fullName: "Kurukshetra University", path: "/kuk", active: true },
-    { name: "MDU", fullName: "Maharshi Dayanand University", active: false },
-    { name: "CGC", fullName: "Chandigarh Group of Colleges", active: false },
-    { name: "JNU", fullName: "Jawaharlal Nehru University", active: false }
+    { name: "KUK", fullName: "Kurukshetra University", path: "/kuk", active: true, color: 'violet' },
+    { name: "MDU", fullName: "Maharshi Dayanand University", active: false, color: 'blue' },
+    { name: "CGC", fullName: "Chandigarh Group of Colleges", active: false, color: 'green' },
+    { name: "JNU", fullName: "Jawaharlal Nehru University", active: false, color: 'orange' }
   ];
 
   const filteredUniversities = universities.filter((uni) =>
@@ -58,7 +60,7 @@ function Home() {
 
       {/* HERO */}
       <section className="eh-hero">
-        <div className="eh-hero-grid">
+        <div className="eh-container eh-hero-grid">
 
           <div className="eh-hero-copy">
             <div className="eh-eyebrow"><FaStar /> Your Study Companion for KUK BCA</div>
@@ -129,98 +131,161 @@ function Home() {
         </div>
       </section>
 
+      {/* UNIVERSITIES */}
+<motion.section className="eh-universities" ref={uniRef} {...reveal}>
+  <div className="eh-container">
+    <div className="eh-section-head eh-section-head-center">
+      <h2><FaUniversity className="eh-section-star" /> Choose Your University</h2>
+    </div>
+    <div className="eh-uni-grid">
+      {filteredUniversities.map((uni) => (
+        <div
+          key={uni.name}
+          className="eh-uni-card"
+          onClick={() => uni.active ? navigate(uni.path) : navigate('/coming-soon')}
+          style={{ opacity: uni.active ? 1 : 0.6 }}
+        >
+          <div className={`eh-uni-icon icon-${uni.color}`}><FaUniversity /></div>
+          <div className="eh-uni-text">
+            <h3>{uni.name}</h3>
+            <p>{uni.fullName}</p>
+            {!uni.active && <span className="eh-soon">Coming Soon</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</motion.section>
+
       {/* FEATURES */}
-      <motion.section className="eh-features" {...reveal}>
-        <div className="eh-features-grid">
-          {features.map((f) => (
-            <div className="eh-feature" key={f.title}>
-              <div className={`eh-feature-icon icon-${f.color}`}><f.icon /></div>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
-            </div>
-          ))}
+<motion.section className="eh-features" {...reveal}>
+  <div className="eh-container">
+    <div className="eh-section-head eh-section-head-center">
+      <h2>What You Get</h2>
+    </div>
+    <div className="eh-features-grid">
+            {features.map((f) => (
+              <div className="eh-feature" key={f.title}>
+                <div className={`eh-feature-icon icon-${f.color}`}><f.icon /></div>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.section>
 
-      {/* POPULAR SUBJECTS — list layout */}
+      {/* POPULAR SUBJECTS */}
       <motion.section className="eh-popular" {...reveal}>
-        <div className="eh-section-head">
-          <h2><FaStar className="eh-section-star" /> Popular Subjects</h2>
-        </div>
-        <div className="eh-popular-list">
-          {popularSubjects.map((s) => (
-            <div
-              key={s.subjectId}
-              className="eh-popular-row"
-              onClick={() => navigate(`/subject/${s.courseId}/${s.subjectId}`)}
-            >
-              <div className={`eh-popular-icon icon-${s.color}`}><s.icon /></div>
-              <div className="eh-popular-text">
-                <h3>{s.name}</h3>
-                <p>{s.meta}</p>
-              </div>
-              <FaArrowRight className="eh-popular-arrow" />
+        <div className="eh-container">
+          <div className="eh-popular-inner">
+            <div className="eh-section-head">
+              <h2><FaStar className="eh-section-star" /> Popular Subjects</h2>
             </div>
-          ))}
+            <div className="eh-popular-list">
+              {popularSubjects.map((s) => (
+                <div
+                  key={s.subjectId}
+                  className="eh-popular-row"
+                  onClick={() => navigate(`/subject/${s.courseId}/${s.subjectId}`)}
+                >
+                  <div className={`eh-popular-icon icon-${s.color}`}><s.icon /></div>
+                  <div className="eh-popular-text">
+                    <h3>{s.name}</h3>
+                    <p>{s.meta}</p>
+                  </div>
+                  <FaArrowRight className="eh-popular-arrow" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.section>
 
       {/* CTA BANNER */}
-      <motion.section className="eh-cta-banner" {...reveal}>
-        <div className="eh-cta-text">
-          <h2>Preparing for exams?</h2>
-          <p>Jump straight into solved papers and structured answers.</p>
-        </div>
-        <button onClick={() => navigate('/kuk')}>
-          Explore Now <FaArrowRight />
-        </button>
-      </motion.section>
-
-      {/* MISSION / STATS */}
-      <motion.section className="eh-mission" {...reveal}>
-        <div className="eh-mission-text">
-          <strong>Our Mission</strong>
-          <p>Helping KUK BCA students study smarter, one subject at a time.</p>
-        </div>
-        <div className="eh-mission-stats">
-          <div><h3>8+</h3><p>Subjects</p></div>
-          <div><h3>100+</h3><p>Questions</p></div>
-          <div><h3>3</h3><p>Years of Papers</p></div>
-          <div><h3>1</h3><p>University, Growing</p></div>
-        </div>
-      </motion.section>
-
-      {/* UNIVERSITIES */}
-      <motion.section className="eh-universities" ref={uniRef} {...reveal}>
-        <h2>Choose your university</h2>
-        <input
-          type="text"
-          placeholder="Search university…"
-          className="eh-uni-search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <div className="eh-uni-grid">
-          {filteredUniversities.map((uni) => (
-            <div
-              key={uni.name}
-              className="eh-uni-card"
-              onClick={() => uni.active ? navigate(uni.path) : navigate('/coming-soon')}
-              style={{ opacity: uni.active ? 1 : 0.55 }}
-            >
-              <h3>{uni.name}</h3>
-              <p>{uni.fullName}</p>
-              {!uni.active && <span className="eh-soon">Coming Soon</span>}
+      <motion.section className="eh-cta-section" {...reveal}>
+        <div className="eh-container">
+          <div className="eh-cta-banner">
+            <div className="eh-cta-text">
+              <h2>Preparing for exams?</h2>
+              <p>Jump straight into solved papers and structured answers.</p>
             </div>
-          ))}
+            <button onClick={() => navigate('/kuk')}>
+              Explore Now <FaArrowRight />
+            </button>
+          </div>
         </div>
       </motion.section>
 
+      {/* MISSION */}
+      <motion.section className="eh-mission-section" {...reveal}>
+        <div className="eh-container">
+          <div className="eh-mission">
+            <div className="eh-mission-photo">
+              <div className="eh-mission-avatar">AK</div>
+              <h4>Arif Khan</h4>
+              <p>Founder, ExamEdge</p>
+            </div>
+            <div className="eh-mission-body">
+              <span className="eh-mission-label">Our Mission</span>
+              <h3>Built by a student, for students who deserve better study resources.</h3>
+              <p>
+                ExamEdge started because previous year papers and notes were
+                scattered across ten different places, with no structure and
+                no idea how much to actually write in an exam. This is
+                that fix — one subject at a time.
+              </p>
+              <div className="eh-mission-stats">
+                <div><h3>8+</h3><p>Subjects</p></div>
+                <div><h3>100+</h3><p>Questions</p></div>
+                <div><h3>3</h3><p>Years of Papers</p></div>
+                <div><h3>1</h3><p>University, Growing</p></div>
+              </div>
+              <button className="eh-mission-link" onClick={() => navigate('/about')}>
+                Read my full story <FaArrowRight />
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* FOOTER */}
       <footer className="eh-footer">
-        <p>Built by a BCA student, for BCA students. Currently live for Kurukshetra University.</p>
-        <button className="eh-about-link" onClick={() => navigate('/about')}>
-          Meet the developer <FaArrowRight />
-        </button>
+        <div className="eh-container">
+          <div className="eh-footer-grid">
+
+            <div className="eh-footer-brand">
+              <div className="eh-footer-logo">ExamEdge</div>
+              <p>Built by a BCA student, for BCA students. Currently live for Kurukshetra University.</p>
+              <div className="eh-footer-socials">
+                <a href="https://instagram.com/yourhandle" target="_blank" rel="noreferrer"><FaInstagram /></a>
+                <a href="https://facebook.com/yourhandle" target="_blank" rel="noreferrer"><FaFacebook /></a>
+                <a href="https://github.com/arifkhan-dev0521" target="_blank" rel="noreferrer"><FaGithub /></a>
+                <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noreferrer"><FaLinkedin /></a>
+                <a href="https://youtube.com/@yourhandle" target="_blank" rel="noreferrer"><FaYoutube /></a>
+              </div>
+            </div>
+
+            <div className="eh-footer-col">
+              <h4>Explore</h4>
+              <button onClick={() => navigate('/kuk')}>BCA CTIS</button>
+              <button onClick={() => navigate('/kuk')}>BCA General</button>
+              <button onClick={() => navigate('/kuk')}>BCA AI</button>
+              <button onClick={() => navigate('/about')}>About the Developer</button>
+            </div>
+
+            <div className="eh-footer-col">
+              <h4>Contact</h4>
+              <a href="mailto:arifmalik0800@gmail.com"><FaEnvelope /> arifmalik0800@gmail.com</a>
+              <a href="tel:+918708003442"><FaPhoneAlt /> +91 87080 03442</a>
+            </div>
+
+          </div>
+
+          <div className="eh-footer-bottom">
+            <p>© 2026 ExamEdge · Made with ❤️ in Haryana</p>
+          </div>
+        </div>
       </footer>
 
     </div>
