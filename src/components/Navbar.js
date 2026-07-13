@@ -18,5 +18,5 @@ export default Navbar;
 
 
 // git add . 
-// git commit -m "Update course page with icons" 
+// git commit -m "Update subject page also" 
 // git push

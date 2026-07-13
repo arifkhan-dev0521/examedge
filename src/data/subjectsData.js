@@ -517,6 +517,185 @@ export const subjectsData = {
       { id: 40, section: "Unit 4", marks: "10 Marks", text: "Discuss the importance of JavaScript in building dynamic and interactive web applications. What is the difference between var, let, and const in terms of scope and hoisting?", answer: "JavaScript adds interactivity without reload. var is function-scoped; let/const are block-scoped, const is fixed." },
       { id: 42, section: "Unit 4", marks: "10 Marks", text: "How do you define and call functions in JavaScript? Illustrate. What are the different types of loops in JavaScript? Discuss.", answer: "Functions defined with function keyword, called by name(). Loops: for, while, do-while, for-in, for-of." }
     ]
+  },
+},
+"oop-cpp": {
+  name: "Object Oriented Programming Using C++",
+  code: "B23-CAP-201",
+  color: "#F97316",
+  semester: "Semester 2",
+  course: "BCA (All Branches)",
+  units: {
+    1: {
+      title: "Streams, Functions & Pointers",
+      questions: [
+        { id: 1, marks: "5 Marks", text: "Explain how overloaded shift operator and member functions are used for Input-Output Operations in C++.", answer: "The stream insertion operator << and extraction operator >> are overloaded to handle standard data types by default. For user-defined objects, these operators can be overloaded as friend functions to enable cout << obj and cin >> obj syntax, allowing custom objects to be displayed and read directly." },
+        { id: 2, marks: "10 Marks", text: "Write a program in C++ to calculate the area of circle, rectangle and triangle using function overloading.", answer: "Function overloading allows multiple functions with the same name but different parameter lists. Example: area(float r) for circle (πr²), area(float l, float b) for rectangle (l*b), area(float b, float h, bool triangle) for triangle (0.5*b*h). The compiler selects the correct function based on arguments passed at compile time." }
+      ]
+    },
+    2: {
+      title: "Structures, Constructors & Cascaded I/O",
+      questions: [
+        { id: 3, marks: "5 Marks", text: "Explain the concept of structure and union in C++. Differentiate between structure and union.", answer: "Structure allocates separate memory for each member, allowing simultaneous access to all members. Union allocates shared memory equal to its largest member, so only one member can hold a valid value at a time. Structures are used when all fields are needed together; unions save memory when only one field is used at a time." },
+        { id: 4, marks: "5 Marks", text: "What do you mean by the data members and member functions of a class? Explain how you can define a member function outside a class by taking example.", answer: "Data members are variables that hold the state of an object. Member functions are methods that operate on data members. A member function can be defined outside the class using the scope resolution operator: ReturnType ClassName::functionName(parameters) { }. This declares the function inside the class and defines its body separately." },
+        { id: 5, marks: "5 Marks", text: "Write a program to demonstrate the use of cascaded insertion and extraction operators in C++.", answer: "Cascading allows multiple insertion/extraction operations in a single statement since << and >> return a reference to the stream object. Example: cout << \"Value: \" << x << \" and \" << y << endl; works because each << call returns cout itself, allowing chaining." },
+        { id: 6, marks: "10 Marks", text: "What do you mean by copy constructor in C++? What is the different situations in which copy constructor is applicable?", answer: "A copy constructor creates a new object as a copy of an existing object of the same class, with signature ClassName(const ClassName &obj). It is invoked: 1) When an object is initialized from another object, 2) When an object is passed by value to a function, 3) When an object is returned by value from a function." }
+      ]
+    },
+    3: {
+      title: "Operator Overloading & Friend Functions",
+      questions: [
+        { id: 7, marks: "10 Marks", text: "What is inheritance? Explain various types of inheritance with suitable example.", answer: "Inheritance allows a class (derived) to acquire properties and behavior of another class (base). Types: Single (one base, one derived), Multiple (multiple base classes), Multilevel (chain of inheritance), Hierarchical (one base, multiple derived), Hybrid (combination of types). Example: class Animal (base) → class Dog (derived) inherits Animal's properties." },
+        { id: 8, marks: "10 Marks", text: "What do you mean by Operator Overloading? Which operators in C++ cannot be overloaded? Write syntax to overload binary operator with friend function.", answer: "Operator overloading allows operators to work with user-defined types. Operators that cannot be overloaded: :: (scope resolution), . (member access), .* (pointer to member), ?: (ternary), sizeof. Syntax for binary operator overload with friend: friend ReturnType operator+(const ClassName &obj1, const ClassName &obj2) { return ClassName(obj1.data + obj2.data); }" },
+        { id: 9, marks: "5 Marks", text: "Define Scope resolution operator in C++. Also list its uses using suitable examples.", answer: "The scope resolution operator (::) accesses members outside their scope. Uses: 1) Define member function outside class: void ClassName::func() {}, 2) Access global variable when local variable has same name: ::variableName, 3) Access static class members: ClassName::staticVar." }
+      ]
+    },
+    4: {
+      title: "Exception Handling & Virtual Functions",
+      questions: [
+        { id: 10, marks: "5 Marks", text: "What do you mean by the data members and member functions of a class? Explain how you can define a member function outside a class by taking example.", answer: "Data members hold object state; member functions define object behavior. Defined outside class using scope resolution: void ClassName::methodName() { // body }" },
+        { id: 11, marks: "10 Marks", text: "Explain virtual function in C++. How it differs from Pure Virtual function?", answer: "A virtual function is declared in base class using the virtual keyword and can be overridden in derived classes, enabling runtime polymorphism. A pure virtual function has no implementation in the base class (virtual void func() = 0;) and makes the class abstract, forcing derived classes to provide an implementation." },
+        { id: 12, marks: "5 Marks", text: "Write a program to demonstrate use of Exception handling.", answer: "Exception handling uses try, catch, and throw. Code that might cause an error is placed in a try block; if an exception occurs, it is thrown and caught by a matching catch block: try { if(b==0) throw \"Division by zero\"; } catch(const char* msg) { cout << msg; }" },
+        { id: 13, marks: "10 Marks", text: "Explain nested try block in Exception Handling. Discuss the order in which exception handling mechanism takes place in C++. What are different type of polymorphism in C++? Explain with the help of proper example.", answer: "A nested try block is a try block placed inside another try block, allowing localized exception handling within a larger try-catch structure. Order: exception is thrown, control transfers to the nearest matching catch block, if not found it propagates outward. Types of polymorphism: Compile-time (function overloading, operator overloading) and Runtime (virtual functions). Example: A base class pointer calling an overridden virtual function in a derived class demonstrates runtime polymorphism." }
+      ]
+    }
+  },
+  yearWise: {
+    2026: [
+      { id: 101, section: "Compulsory Question", marks: "1 Mark", text: "Define streams in C++.", answer: "Streams represent a flow of data. cin is the input stream, cout is the output stream. They are objects of istream and ostream classes used for input/output operations." },
+      { id: 102, section: "Compulsory Question", marks: "1 Mark", text: "What is inline function?", answer: "An inline function requests the compiler to insert the complete function body wherever the function is called, avoiding function call overhead. Declared using the inline keyword." },
+      { id: 103, section: "Compulsory Question", marks: "1 Mark", text: "Differentiate between pointer and reference.", answer: "A pointer stores an address and can be reassigned or null. A reference is an alias for an existing variable, must be initialized when declared, and cannot be changed to refer to another variable." },
+      { id: 104, section: "Compulsory Question", marks: "1 Mark", text: "What is abstraction?", answer: "Abstraction means hiding implementation details and showing only essential features of an object, typically achieved using classes and access specifiers." },
+      { id: 105, section: "Compulsory Question", marks: "1 Mark", text: "Write short note on Static data members.", answer: "Static data members are shared among all objects of a class, declared with the static keyword, and exist independent of any object instance." },
+      { id: 106, section: "Compulsory Question", marks: "1 Mark", text: "Write Syntax for Copy constructor.", answer: "ClassName(const ClassName &obj) { // copy data members from obj }" },
+      { id: 107, section: "Compulsory Question", marks: "1 Mark", text: "Differentiate between Unary vs. Binary operators.", answer: "Unary operators act on a single operand (e.g., ++, --, unary -). Binary operators act on two operands (e.g., +, -, *, /)." },
+      { id: 108, section: "Compulsory Question", marks: "1 Mark", text: "Define Virtual base class.", answer: "A virtual base class prevents multiple copies of a base class from being inherited into a derived class in multiple inheritance, declared using the virtual keyword during inheritance." },
+      { id: 109, section: "Compulsory Question", marks: "1 Mark", text: "What are uncaught exceptions?", answer: "An uncaught exception is one that is thrown but not handled by any matching catch block, causing the program to terminate abnormally via std::terminate()." },
+      { id: 110, section: "Compulsory Question", marks: "1 Mark", text: "Explain Divide by zero error.", answer: "Divide by zero is a runtime error that occurs when a number is divided by zero. In C++, integer division by zero causes undefined behavior; it should be checked and handled using exception handling." },
+      { id: 1, section: "Unit 1", marks: "5 Marks", text: "Explain how overloaded shift operator and member functions are used for Input-Output Operations in C++.", answer: "Stream operators << and >> can be overloaded as friend functions to allow direct input/output of user-defined objects using cin and cout." }
+    ],
+    2025: [
+      { id: 201, section: "Compulsory Question", marks: "2 Marks", text: "Differentiate between Private and public member.", answer: "Private members are accessible only within the class. Public members are accessible from outside the class as well." },
+      { id: 202, section: "Compulsory Question", marks: "2 Marks", text: "Multiple and Multilevel Inheritance.", answer: "Multiple inheritance: a class inherits from more than one base class. Multilevel inheritance: a class inherits from a derived class, forming a chain." },
+      { id: 203, section: "Compulsory Question", marks: "2 Marks", text: "Abstract and Virtual Class.", answer: "An abstract class contains at least one pure virtual function and cannot be instantiated. A virtual class is used in inheritance to avoid duplicate base class copies." },
+      { id: 204, section: "Compulsory Question", marks: "2 Marks", text: "Protected access specifier.", answer: "Protected members are accessible within the class and its derived classes, but not from outside." },
+      { id: 205, section: "Compulsory Question", marks: "2 Marks", text: "Run-Time and Compile-Time Polymorphism.", answer: "Compile-time polymorphism is achieved through function/operator overloading, resolved at compile time. Run-time polymorphism is achieved through virtual functions, resolved during program execution." },
+      { id: 206, section: "Unit 1", marks: "10 Marks", text: "What are the formatted and unformatted input-output functions with appropriate examples?", answer: "Formatted I/O uses manipulators like setw, setprecision for controlled output format. Unformatted I/O uses functions like get(), put(), read(), write() for raw character/byte handling without formatting." },
+      { id: 7, section: "Unit 2", marks: "5 Marks", text: "Describe static data members and static member function with suitable example.", answer: "Static data members are shared across all objects; static member functions can access only static data members and are called using ClassName::functionName()." },
+      { id: 8, section: "Unit 2", marks: "5 Marks", text: "Call by value and Call by reference.", answer: "Call by value passes a copy of the argument; changes don't affect the original. Call by reference passes the actual variable's address; changes affect the original." },
+      { id: 9, section: "Unit 2", marks: "5 Marks", text: "What is Destructor? State different rules needed to be considered while defining a destructor for a given class.", answer: "A destructor cleans up an object when it goes out of scope, named ~ClassName(). Rules: no return type, no parameters, only one destructor per class, automatically called at object destruction." },
+      { id: 10, section: "Unit 3", marks: "5 Marks", text: "Explain scope resolution operator and its significance with suitable example.", answer: "The :: operator accesses class members outside their normal scope, essential for defining member functions outside the class body and accessing static members." },
+      { id: 11, section: "Unit 3", marks: "5 Marks", text: "What is Constructor Overloading? Explain with example program.", answer: "Constructor overloading allows multiple constructors with different parameter lists in the same class, letting objects be initialized in different ways depending on arguments passed." },
+      { id: 12, section: "Unit 4", marks: "10 Marks", text: "Explain the concept of Exception handling in C++ with suitable example.", answer: "Exception handling manages runtime errors using try, catch, throw blocks, allowing programs to handle unexpected situations gracefully instead of crashing." },
+      { id: 13, section: "Unit 4", marks: "10 Marks", text: "What is virtual function? Explain its significance. What is virtual function? Explain its significance in C++ using virtual function.", answer: "A virtual function allows derived classes to override base class behavior, enabling runtime polymorphism through base class pointers/references pointing to derived class objects." }
+    ]
+  }
+},
+"math-cs2": {
+  name: "Mathematical Foundations for Computer Science-II",
+  code: "B23-CAP-204",
+  color: "#0EA5E9",
+  semester: "Semester 2",
+  course: "BCA (All Branches)",
+  units: {
+    1: {
+      title: "Integration & Graphical Representation",
+      questions: [
+        { id: 1, marks: "4 Marks", text: "Solve the integral ∫ xeˣ dx.", answer: "Using integration by parts (∫u dv = uv − ∫v du) with u = x, dv = eˣ dx: du = dx, v = eˣ. So ∫xeˣ dx = xeˣ − ∫eˣ dx = xeˣ − eˣ + C = eˣ(x − 1) + C." },
+        { id: 2, marks: "4 Marks", text: "Explain Pie diagrams, Histograms, Frequency polygons, and Ogives.", answer: "Pie diagram: circular chart showing proportions as slices. Histogram: bar chart of continuous frequency data with no gaps between bars. Frequency polygon: line graph connecting midpoints of histogram bar tops. Ogive: cumulative frequency curve, used to find median and quartiles graphically." },
+        { id: 3, marks: "4 Marks", text: "Evaluate ∫ 1/(√(x+1)+√(x+3)) dx.", answer: "Rationalize by multiplying numerator and denominator by (√(x+1) − √(x+3)): denominator becomes (x+1)−(x+3) = −2. So integral = −1/2 ∫(√(x+1) − √(x+3)) dx = −1/3[(x+1)^(3/2) − (x+3)^(3/2)] + C." },
+        { id: 4, marks: "4 Marks", text: "Construct a frequency polygon for the given data.", answer: "Plot class midpoints on x-axis against frequencies on y-axis, mark points, connect them with straight lines, and close the polygon by joining to zero frequency points at both ends of the data range." }
+      ]
+    },
+    2: {
+      title: "Measures of Central Tendency & Dispersion",
+      questions: [
+        { id: 5, marks: "4 Marks", text: "Find the mean deviation about mean for the data and their coefficients.", answer: "Mean Deviation = (Σf|x−mean|)/N. Calculate mean first using Σfx/N, then find absolute deviations of each value from mean, multiply by frequency, sum, and divide by total frequency N. Coefficient of MD = MD/Mean." },
+        { id: 6, marks: "4 Marks", text: "The Median and Mode of a wage distribution are known. Find the missing frequency values.", answer: "Using the Median formula: Median = L + [(N/2 − cf)/f] × h, and Mode = L + [(f1−f0)/(2f1−f0−f2)] × h, set up equations with known median/mode values and solve simultaneously for missing frequencies f3, f4, f5." },
+        { id: 7, marks: "4 Marks", text: "For a group of candidates, correct the mean and standard deviation after misread scores are identified.", answer: "Corrected Sum = Original Sum − wrong values + correct values. Corrected Mean = Corrected Sum/N. For SD, correct Σx² by removing wrong values² and adding correct values², then recompute SD = √(Σx²/N − Mean²)." }
+      ]
+    },
+    3: {
+      title: "Correlation & Regression",
+      questions: [
+        { id: 8, marks: "4 Marks", text: "What is rank correlation? How can you handle repeated ranks? Obtain the rank correlation coefficient for given data.", answer: "Rank correlation (Spearman's) measures association between ranked variables: R = 1 − (6Σd²)/(n(n²−1)), where d is the difference in ranks. For repeated ranks, assign average rank to tied values and add a correction factor (m³−m)/12 to Σd² for each group of ties." },
+        { id: 9, marks: "4 Marks", text: "Discuss the various methods for finding correlation using suitable examples.", answer: "Methods: 1) Scatter diagram (visual method), 2) Karl Pearson's coefficient (r = Σ(x−x̄)(y−ȳ)/√(Σ(x−x̄)²Σ(y−ȳ)²)) for linear relationships, 3) Spearman's rank correlation for ranked/ordinal data, 4) Concurrent deviation method for quick approximate correlation." },
+        { id: 10, marks: "4 Marks", text: "Find the Karl Pearson's coefficient of correlation between x and y from the data.", answer: "r = [NΣxy − ΣxΣy] / √([NΣx² − (Σx)²][NΣy² − (Σy)²]). Calculate Σx, Σy, Σxy, Σx², Σy² from the data table, substitute into the formula to get r, which ranges from -1 to +1." }
+      ]
+    },
+    4: {
+      title: "Regression Analysis",
+      questions: [
+        { id: 11, marks: "4 Marks", text: "Find a linear regression equation for the given set of data.", answer: "Regression equation of Y on X: Y = a + bX, where b = Σ(x−x̄)(y−ȳ)/Σ(x−x̄)², and a = ȳ − b·x̄. Calculate means of X and Y first, then compute b using deviations, then find a." },
+        { id: 12, marks: "4 Marks", text: "Fit a straight line of the form Y = AX + B to the given data.", answer: "Using least squares method: A = [NΣxy − ΣxΣy]/[NΣx² − (Σx)²], B = [Σy − AΣx]/N. Calculate the required summations from the data table and solve for A and B." },
+        { id: 13, marks: "4 Marks", text: "Determine the equation of a straight line which best fits the data.", answer: "Apply the least squares regression method: compute Σx, Σy, Σxy, Σx² from the table, then solve the normal equations Σy = nA + BΣx and Σxy = AΣx + BΣx² for A (intercept) and B (slope)." },
+        { id: 14, marks: "4 Marks", text: "Find the line of regression of x on y for the data.", answer: "Regression equation of X on Y: X = a + bY, where b = Σ(x−x̄)(y−ȳ)/Σ(y−ȳ)², and a = x̄ − b·ȳ. This predicts X values based on given Y values." }
+      ]
+    }
+  },
+  yearWise: {
+    2026: [
+      { id: 101, section: "Unit 1", marks: "2 Marks", text: "Evaluate ∫ 1/(√(x+1)+√(x+3)) dx.", answer: "Rationalizing and integrating gives −1/3[(x+1)^(3/2) − (x+3)^(3/2)] + C." },
+      { id: 102, section: "Unit 1", marks: "2 Marks", text: "Represent the following data by percentage sub-divided bar diagram.", answer: "Convert each category's values to percentages of the total, then draw a single bar divided into segments proportional to each percentage, stacked on top of each other." },
+      { id: 3, section: "Unit 1", marks: "4 Marks", text: "Find the mean deviation about mean for the data and coefficients.", answer: "Calculate mean, then absolute deviations from mean weighted by frequency, sum and divide by N for MD; coefficient = MD/Mean." },
+      { id: 4, section: "Unit 1", marks: "4 Marks", text: "Construct a frequency polygon for the given data.", answer: "Plot midpoints vs frequencies and connect with straight lines, closing at zero frequency points." },
+      { id: 9, section: "Unit 3", marks: "4 Marks", text: "Calculate the median and mode of the data.", answer: "Median found using cumulative frequency and median class formula; Mode found using modal class formula." },
+      { id: 10, section: "Unit 3", marks: "4 Marks", text: "Compute the coefficient of rank correlation from marks in two subjects.", answer: "Rank both sets of marks, find d (rank differences), apply Spearman's formula R = 1 − 6Σd²/(n(n²−1))." },
+      { id: 13, section: "Unit 4", marks: "4 Marks", text: "Determine the equation of a straight line which best fits the data.", answer: "Use least squares method with normal equations to solve for slope and intercept." },
+      { id: 14, section: "Unit 4", marks: "4 Marks", text: "Find the line of regression of x on y for the data.", answer: "X = a + bY using b = Σ(x−x̄)(y−ȳ)/Σ(y−ȳ)² and a = x̄ − b·ȳ." }
+    ]
+  }
+},
+"human-values": {
+  name: "Human Values and Ethics",
+  code: "B23-VAC-101",
+  color: "#A855F7",
+  semester: "Semester 2",
+  course: "BCA (All Branches)",
+  units: {
+    1: {
+      title: "Introduction to Human Values",
+      questions: [
+        { id: 1, marks: "10 Marks", text: "What are human values and how are they relevant in the contemporary world? Discuss.", answer: "Human values are core principles that guide behavior and decision-making, such as honesty, respect, compassion, and responsibility. In the contemporary world, they are relevant for maintaining ethical conduct in an increasingly complex, technology-driven, and interconnected society, helping individuals navigate moral dilemmas at work, in relationships, and in digital spaces." },
+        { id: 2, marks: "10 Marks", text: "How do personal, social, moral, and spiritual values shape an individual's personality? Explain.", answer: "Personal values (self-discipline, integrity) shape individual character. Social values (respect, cooperation) guide interaction with others. Moral values (honesty, justice) determine right and wrong conduct. Spiritual values (inner peace, mindfulness) shape one's sense of purpose. Together, they form a well-rounded, balanced personality." }
+      ]
+    },
+    2: {
+      title: "Ethical Theories & Cultivation of Values",
+      questions: [
+        { id: 3, marks: "10 Marks", text: "Discuss various methods to cultivate ethical values among individuals and society.", answer: "Methods include: Education and moral instruction from a young age, Role modeling by leaders and elders, Reflection and self-awareness practices, Community engagement and social responsibility programs, and Reinforcement through consistent ethical practice in institutions and workplaces." },
+        { id: 4, marks: "10 Marks", text: "Briefly explain deontology, virtue ethics and utilitarianism.", answer: "Deontology (Kantian ethics) judges actions based on adherence to moral rules and duties, regardless of consequences. Virtue ethics focuses on developing good character traits (virtues) like courage and honesty rather than following rules. Utilitarianism judges actions by their outcomes, aiming to maximize overall happiness or benefit for the greatest number of people." }
+      ]
+    },
+    3: {
+      title: "Upanishadic Models & Yoga Philosophy",
+      questions: [
+        { id: 5, marks: "10 Marks", text: "Describe the Panchkosha model discussed in Upanishads and its relevance for human well-being.", answer: "The Panchkosha model describes five layers (koshas) of human existence: Annamaya Kosha (physical body), Pranamaya Kosha (vital energy), Manomaya Kosha (mind), Vijnanamaya Kosha (intellect/wisdom), and Anandamaya Kosha (bliss). Understanding and balancing all five layers promotes holistic well-being, integrating physical, mental, and spiritual health." },
+        { id: 6, marks: "10 Marks", text: "How can four Antah-Karanas of Yoga be helpful in understanding human personality? Discuss.", answer: "The four Antah-Karanas (inner instruments) are: Manas (mind — processes sensory information), Buddhi (intellect — makes decisions and judgments), Chitta (memory/consciousness — stores impressions), and Ahamkara (ego — creates sense of individual identity). Together they explain how thoughts, decisions, memory, and self-identity shape human personality and behavior." }
+      ]
+    },
+    4: {
+      title: "Professional Ethics",
+      questions: [
+        { id: 7, marks: "10 Marks", text: "What are professional ethics? Are they relevant in contemporary situations? Analyze.", answer: "Professional ethics are standards of conduct expected in a workplace or profession, including honesty, accountability, confidentiality, and fairness. They remain highly relevant today due to increasing corporate scandals, data privacy concerns, and the need for trust in digital and remote work environments, ensuring professionals act responsibly toward clients, colleagues, and society." },
+        { id: 8, marks: "10 Marks", text: "Why are transparency and accountability significant in professional practices? Explain.", answer: "Transparency ensures information and decision-making processes are open and understandable to stakeholders, building trust. Accountability ensures individuals and organizations take responsibility for their actions and outcomes. Together, they prevent corruption, improve organizational credibility, and are essential for maintaining ethical standards in modern professional environments." }
+      ]
+    }
+  },
+  yearWise: {
+    2026: [
+      { id: 201, section: "Compulsory Question", marks: "MCQ", text: "How can we best describe the relation between values and ethics?", answer: "Values and ethics are related but distinct: values are personal or social while ethics are guidelines for right/wrong conduct — ethics form the foundation of and guide the application of values." },
+      { id: 202, section: "Compulsory Question", marks: "MCQ", text: "Which of the following defines 'human values' best?", answer: "Human values are best defined as guidelines for ethical behaviour, universal in nature, achieved and reinforced through effort — not monetary rewards or laws imposed by governments." },
+      { id: 203, section: "Compulsory Question", marks: "MCQ", text: "Which of the following is an example of a social value?", answer: "Cultural traditions and practices passed down through generations, such as respect for community and shared customs, represent social values." },
+      { id: 204, section: "Compulsory Question", marks: "MCQ", text: "Which of the following is an example of a social value in personal development?", answer: "Respect for diversity is a key example of a social value that shapes how individuals interact within a community." },
+      { id: 205, section: "Compulsory Question", marks: "MCQ", text: "Which of the following best describes an integrated personality?", answer: "An integrated personality balances different aspects of the self harmoniously — physical, mental, moral, and spiritual — rather than focusing on only one dimension." },
+      { id: 206, section: "Compulsory Question", marks: "MCQ", text: "What primarily distinguishes values from skills?", answer: "Values guide behaviour and decision-making, while skills help perform specific tasks — values relate to character, skills relate to capability." },
+      { id: 207, section: "Compulsory Question", marks: "MCQ", text: "What is the main goal of Virtue Ethics?", answer: "The main goal of Virtue Ethics is building the character of a person, focusing on cultivating good traits rather than just following rules or maximizing outcomes." },
+      { id: 1, section: "Unit 1", marks: "10 Marks", text: "What are human values and how are they relevant in the contemporary world? Discuss.", answer: "Human values guide ethical behaviour and decision-making, remaining essential in today's complex, technology-driven society for navigating moral challenges." },
+      { id: 3, section: "Unit 2", marks: "10 Marks", text: "Discuss various methods to cultivate ethical values among individuals and society.", answer: "Education, role modeling, self-reflection, community engagement, and consistent reinforcement in institutions all help cultivate ethical values." },
+      { id: 5, section: "Unit 3", marks: "10 Marks", text: "Describe the Panchkosha model discussed in Upanishads and its relevance for human well-being.", answer: "Five layers — physical, vital energy, mind, intellect, and bliss — together represent holistic human well-being in the Panchkosha model." },
+      { id: 7, section: "Unit 4", marks: "10 Marks", text: "What are professional ethics? Are they relevant in contemporary situations? Analyze.", answer: "Professional ethics ensure honesty, accountability, and fairness at work, remaining highly relevant amid modern workplace and digital-era challenges." }
+    ]
   }
 }
 };

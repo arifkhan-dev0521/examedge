@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -23,6 +23,7 @@ function CoursePage() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const categoryRef = useRef(null);
 
   const courses = [
     { name: "BCA", categories: [
@@ -74,7 +75,12 @@ function CoursePage() {
               <div
                 key={course.name}
                 className={`course-card ${isActive ? 'active' : ''}`}
-                onClick={() => setSelectedCourse(course)}
+                onClick={() => {
+  setSelectedCourse(course);
+  setTimeout(() => {
+    categoryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}}
               >
                 <div className="course-card-icon"><Icon /></div>
                 <span>{course.name}</span>
@@ -89,6 +95,7 @@ function CoursePage() {
           <motion.div
             key={selectedCourse.name}
             className="category-section"
+            ref={categoryRef}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}

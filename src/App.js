@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import OSPage from './components/OSPage';
@@ -17,7 +17,14 @@ import './theme.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const navType = useNavigationType();
+
+  useEffect(() => {
+    if (navType !== 'POP') {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, navType]);
+
   return null;
 }
 

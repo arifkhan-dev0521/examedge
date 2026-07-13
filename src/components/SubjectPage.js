@@ -1,9 +1,57 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { doc, getDoc } from 'firebase/firestore';
+import {
+  FaLightbulb, FaExternalLinkAlt, FaYoutube, FaLanguage
+} from 'react-icons/fa';
 import { db } from '../firebase';
 import Breadcrumb from './Breadcrumb';
 import './SubjectPage.css';
+
+function AnswerBody({ answer, color, showHindi }) {
+  // Backward compatible: old data is a plain string
+  if (typeof answer === 'string') {
+    return <p className="ans-text">{answer}</p>;
+  }
+
+  const displayText = showHindi && answer.hindi ? answer.hindi : answer.text;
+
+  return (
+    <div>
+      <p className="ans-text">{displayText}</p>
+
+      {answer.points && answer.points.length > 0 && (
+        <ul className="ans-points">
+          {answer.points.map((pt, i) => <li key={i}>{pt}</li>)}
+        </ul>
+      )}
+
+      {answer.tip && (
+        <div className="ans-tip" style={{ borderLeftColor: color }}>
+          <FaLightbulb style={{ color }} />
+          <span>{answer.tip}</span>
+        </div>
+      )}
+
+      {answer.links && answer.links.length > 0 && (
+        <div className="ans-links">
+          {answer.links.map((link, i) => (
+            <a key={i} href={link.url} target="_blank" rel="noreferrer" className="ans-link-chip">
+              <FaExternalLinkAlt /> {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+
+      {answer.video && (
+        <a href={answer.video} target="_blank" rel="noreferrer" className="ans-video-btn">
+          <FaYoutube /> Watch video explanation
+        </a>
+      )}
+    </div>
+  );
+}
 
 function SubjectPage() {
   const { subjectId, courseId } = useParams();
@@ -14,13 +62,14 @@ function SubjectPage() {
   const [activeYear, setActiveYear] = useState(null);
   const [subject, setSubject] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [hindiMap, setHindiMap] = useState({});
 
   useEffect(() => {
     async function fetchSubject() {
       try {
         const docRef = doc(db, 'subjects', subjectId);
         const docSnap = await getDoc(docRef);
-        
+
         if (docSnap.exists()) {
           setSubject(docSnap.data());
         } else {
@@ -33,19 +82,13 @@ function SubjectPage() {
         setLoading(false);
       }
     }
-    
+
     fetchSubject();
   }, [subjectId, navigate]);
 
   if (loading) {
     return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh',
-        color: 'var(--text)'
-      }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'var(--text)' }}>
         Loading...
       </div>
     );
@@ -62,13 +105,39 @@ function SubjectPage() {
     setActiveYear(parseInt(years[0]));
   }
 
-  const toggle = (id) => {
-    setOpenId(openId === id ? null : id);
-  };
+  const toggle = (id) => setOpenId(openId === id ? null : id);
+  const toggleHindi = (id) => setHindiMap((prev) => ({ ...prev, [id]: !prev[id] }));
 
   const questions = viewMode === 'unit'
     ? units[activeUnit]?.questions || []
     : yearWise[activeYear] || [];
+
+  const renderQuestionCard = (q) => {
+    const hasHindi = typeof q.answer === 'object' && q.answer.hindi;
+    return (
+      <div key={q.id} className="sub-q-card" style={openId === q.id ? { borderColor: color } : {}}>
+        <div className="sub-q-header" onClick={() => toggle(q.id)}>
+          <div className="sub-q-marks" style={{ background: `${color}18`, color, borderColor: color }}>
+            {q.marks}
+          </div>
+          <div className="sub-q-text">{q.text}</div>
+          <div className="sub-q-toggle" style={openId === q.id ? { background: color, transform: 'rotate(180deg)' } : {}}>
+            <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
+          </div>
+        </div>
+        <div className="sub-q-answer" style={{ maxHeight: openId === q.id ? '900px' : '0' }}>
+          <div className="sub-q-answer-inner">
+            {hasHindi && (
+              <button className="ans-lang-toggle" style={{ color, borderColor: color }} onClick={() => toggleHindi(q.id)}>
+                <FaLanguage /> {hindiMap[q.id] ? 'English' : 'हिंदी'}
+              </button>
+            )}
+            <AnswerBody answer={q.answer} color={color} showHindi={!!hindiMap[q.id]} />
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="subject-page">
@@ -79,14 +148,7 @@ function SubjectPage() {
       ]} />
 
       <div className="subject-hero">
-        <div
-          className="subject-tag"
-          style={{
-            background: `${color}18`,
-            color: color,
-            borderColor: color
-          }}
-        >
+        <div className="subject-tag" style={{ background: `${color}18`, color, borderColor: color }}>
           {subject.course} · {subject.semester}
         </div>
         <h1 style={{ color: 'var(--text)' }}>{subject.name}</h1>
@@ -127,37 +189,25 @@ function SubjectPage() {
             ))}
           </div>
 
-          <div className="subject-content">
-            <h2 className="subject-unit-heading">
-              Unit {activeUnit} — {units[activeUnit]?.title}
-            </h2>
-            {questions.length === 0 ? (
-              <div className="no-content">Questions coming soon for this unit.</div>
-            ) : (
-              questions.map((q) => (
-                <div key={q.id} className="sub-q-card" style={openId === q.id ? { borderColor: color } : {}}>
-                  <div className="sub-q-header" onClick={() => toggle(q.id)}>
-                    <div
-                      className="sub-q-marks"
-                      style={{ background: `${color}18`, color: color, borderColor: color }}
-                    >
-                      {q.marks}
-                    </div>
-                    <div className="sub-q-text">{q.text}</div>
-                    <div
-                      className="sub-q-toggle"
-                      style={openId === q.id ? { background: color, transform: 'rotate(180deg)' } : {}}
-                    >
-                      <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-                    </div>
-                  </div>
-                  <div className="sub-q-answer" style={{ maxHeight: openId === q.id ? '500px' : '0' }}>
-                    <div className="sub-q-answer-inner">{q.answer}</div>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeUnit}
+              className="subject-content"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <h2 className="subject-unit-heading">
+                Unit {activeUnit} — {units[activeUnit]?.title}
+              </h2>
+              {questions.length === 0 ? (
+                <div className="no-content">Questions coming soon for this unit.</div>
+              ) : (
+                questions.map(renderQuestionCard)
+              )}
+            </motion.div>
+          </AnimatePresence>
         </>
       ) : (
         <>
@@ -174,65 +224,49 @@ function SubjectPage() {
             ))}
           </div>
 
-          <div className="subject-content">
-  <h2 className="subject-unit-heading">{activeYear} — Question Paper</h2>
-  {questions.length === 0 ? (
-    <div className="no-content">Paper coming soon.</div>
-  ) : (
-    (() => {
-      const grouped = {};
-      questions.forEach((q) => {
-        const sec = q.section || "Questions";
-        if (!grouped[sec]) grouped[sec] = [];
-        grouped[sec].push(q);
-      });
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeYear}
+              className="subject-content"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <h2 className="subject-unit-heading">{activeYear} — Question Paper</h2>
+              {questions.length === 0 ? (
+                <div className="no-content">Paper coming soon.</div>
+              ) : (
+                (() => {
+                  const grouped = {};
+                  questions.forEach((q) => {
+                    const sec = q.section || "Questions";
+                    if (!grouped[sec]) grouped[sec] = [];
+                    grouped[sec].push(q);
+                  });
 
-      let qNum = 0;
+                  let qNum = 0;
 
-      return Object.keys(grouped).map((sectionName) => (
-        <div key={sectionName} style={{ marginBottom: '28px' }}>
-          <div style={{
-            fontSize: '13px',
-            fontWeight: '700',
-            color: color,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            marginBottom: '12px',
-            paddingBottom: '8px',
-            borderBottom: `2px solid ${color}30`
-          }}>
-            {sectionName}
-          </div>
-          {grouped[sectionName].map((q) => {
-            qNum++;
-            return (
-              <div key={q.id} className="sub-q-card" style={openId === q.id ? { borderColor: color } : {}}>
-                <div className="sub-q-header" onClick={() => toggle(q.id)}>
-                  <div
-                    className="sub-q-marks"
-                    style={{ background: `${color}18`, color: color, borderColor: color }}
-                  >
-                    Q{qNum} · {q.marks}
-                  </div>
-                  <div className="sub-q-text">{q.text}</div>
-                  <div
-                    className="sub-q-toggle"
-                    style={openId === q.id ? { background: color, transform: 'rotate(180deg)' } : {}}
-                  >
-                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-                  </div>
-                </div>
-                <div className="sub-q-answer" style={{ maxHeight: openId === q.id ? '500px' : '0' }}>
-                  <div className="sub-q-answer-inner">{q.answer}</div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ));
-    })()
-  )}
-</div>
+                  return Object.keys(grouped).map((sectionName) => (
+                    <div key={sectionName} style={{ marginBottom: '28px' }}>
+                      <div style={{
+                        fontSize: '13px', fontWeight: '700', color,
+                        textTransform: 'uppercase', letterSpacing: '0.5px',
+                        marginBottom: '12px', paddingBottom: '8px',
+                        borderBottom: `2px solid ${color}30`
+                      }}>
+                        {sectionName}
+                      </div>
+                      {grouped[sectionName].map((q) => {
+                        qNum++;
+                        return renderQuestionCard({ ...q, marks: `Q${qNum} · ${q.marks}` });
+                      })}
+                    </div>
+                  ));
+                })()
+              )}
+            </motion.div>
+          </AnimatePresence>
         </>
       )}
     </div>
