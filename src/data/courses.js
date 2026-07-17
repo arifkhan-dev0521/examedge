@@ -11,7 +11,7 @@ export const coursesData = {
         { name: "Mathematical Foundations for Computer Science-I", code: "BCA-CTS-104", major: true, units: 4, path: null },
         { name: "English Language and Communication Level-I", code: "B23-AEC-111", major: false, units: 4, path: null },
         { name: "Office and Spreadsheet Tools Learning", code: "B23-SEC-101", major: false, units: 4, path: null },
-        { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: null },
+        { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: "environmental-studies" },
         { name: "Social Media Marketing", code: "B23-BBA-MDC-105", major: false, units: 4, path: null }
       ]
     },
@@ -19,11 +19,12 @@ export const coursesData = {
       subjects: [
         { name: "Object Oriented Programming Using C++", code: "BCA-CTS-201", major: true, units: 4, path: "oop-cpp" },
         { name: "Introduction to Web Technologies", code: "BCA-CTS-202", major: true, units: 4, path: "web-technologies" },
-        { name: "Concepts of Operating Systems", code: "BCA-CTS-203", major: true, units: 4, path: null },
+        { name: "Concepts of Operating Systems", code: "BCA-CTS-203", major: true, units: 4, path: "concepts-of-os" },
         { name: "Mathematical Foundations for Computer Science-II", code: "BCA-CTS-204", major: true, units: 4, path: "math-cs2" },
         { name: "English Language and Communication Level-2", code: "B23-AEC-211", major: false, units: 4, path: null },
         { name: "Soft Skills", code: "B23-SEC-207", major: false, units: 4, path: null },
         { name: "Human Values and Ethics", code: "B23-VAC-101", major: false, units: 4, path: "human-values" },
+        { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: "environmental-studies" },
         { name: "Entrepreneurship & Start-ups", code: "B23-BBA-MDC-204", major: false, units: 4, path: null }
       ]
     },
@@ -80,7 +81,7 @@ export const coursesData = {
         { name: "Mathematical Foundations for Computer Science-I", code: "BCA-CAI-104", major: true, units: 4, path: null },
         { name: "English Language and Communication Level-I", code: "B23-AEC-111", major: false, units: 4, path: null },
         { name: "Office and Spreadsheet Tools Learning", code: "B23-SEC-101", major: false, units: 4, path: null },
-        { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: null },
+        { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: "environmental-studies" },
         { name: "Social Media Marketing", code: "B23-BBA-MDC-105", major: false, units: 4, path: null }
       ]
     },
@@ -88,11 +89,12 @@ export const coursesData = {
       subjects: [
         { name: "Object Oriented Programming Using C++", code: "BCA-CAI-201", major: true, units: 4, path: "oop-cpp" },
         { name: "Introduction to Web Technologies", code: "BCA-CAI-202", major: true, units: 4, path: "web-technologies" },
-        { name: "Concepts of Operating Systems", code: "BCA-CAI-203", major: true, units: 4, path: null },
+        { name: "Concepts of Operating Systems", code: "BCA-CAI-203", major: true, units: 4, path: "concepts-of-os" },
         { name: "Mathematical Foundations for Computer Science-II", code: "BCA-CAI-204", major: true, units: 4, path: "math-cs2" },
         { name: "English Language and Communication Level-2", code: "B23-AEC-211", major: false, units: 4, path: null },
         { name: "Soft Skills", code: "B23-SEC-207", major: false, units: 4, path: null },
         { name: "Human Values and Ethics", code: "B23-VAC-101", major: false, units: 4, path: "human-values" },
+        { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: "environmental-studies" },
         { name: "Entrepreneurship & Start-ups", code: "B23-BBA-MDC-204", major: false, units: 4, path: null }
       ]
     },
@@ -148,6 +150,13 @@ export const coursesData = {
             code: "BCA-101",
             units: 4,
             path: "c-programming"
+          },
+          {
+            name: "Environmental Studies",
+            code: "B23-VAC-201",
+            major: false,
+            units: 4,
+            path: "environmental-studies"
           }
         ]
       },
@@ -155,8 +164,10 @@ export const coursesData = {
   subjects: [
     { name: "Introduction to Web Technologies", code: "B23-CAP-202", major: true, units: 4, path: "web-technologies" },
     { name: "Object Oriented Programming Using C++", code: "B23-CAP-201", major: true, units: 4, path: "oop-cpp" },
+    { name: "Concepts of Operating Systems", code: "B23-CAP-203", major: true, units: 4, path: "concepts-of-os" },
     { name: "Mathematical Foundations for Computer Science-II", code: "B23-CAP-204", major: true, units: 4, path: "math-cs2" },
-    { name: "Human Values and Ethics", code: "B23-VAC-101", major: false, units: 4, path: "human-values" }
+    { name: "Human Values and Ethics", code: "B23-VAC-101", major: false, units: 4, path: "human-values" },
+    { name: "Environmental Studies", code: "B23-VAC-201", major: false, units: 4, path: "environmental-studies" }
   ] 
 },
       3: {

@@ -7,7 +7,7 @@
   --text: #111827;
   --muted: #6b7280;
   --accent: #5B4FE8;
-  --accent-soft: rgba(37,99,235,0.08);
+  --accent-soft: rgba(91,79,232,0.10);
   --navbar-bg: #ffffff;
   --hero-bg: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
   --input-bg: #f1f5f9;
@@ -23,7 +23,7 @@
   --text: #e2e8f0;
   --muted: #8892a4;
   --accent: #8B7EFA;
-  --accent-soft: rgba(79,142,247,0.10);
+  --accent-soft: rgba(139,126,250,0.12);
   --navbar-bg: #181c27;
   --hero-bg: linear-gradient(135deg, #111827 0%, #1a1f2e 100%);
   --input-bg: #1a1f2e;
