@@ -3,52 +3,95 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { doc, getDoc } from 'firebase/firestore';
 import {
-  FaLightbulb, FaExternalLinkAlt, FaYoutube, FaLanguage
+  FaLightbulb, FaYoutube, FaLanguage, FaEdit
 } from 'react-icons/fa';
 import { db } from '../firebase';
 import Breadcrumb from './Breadcrumb';
 import './SubjectPage.css';
 
-function AnswerBody({ answer, color, showHindi }) {
-  // Backward compatible: old data is a plain string
-  if (typeof answer === 'string') {
-    return <p className="ans-text">{answer}</p>;
-  }
+// Detects known reference sites from a URL and returns a small branded badge config.
+// We use a colored letter badge instead of the real logo image to avoid reproducing trademarked logos.
+function getSiteBadge(url) {
+  const u = (url || '').toLowerCase();
+  if (u.includes('geeksforgeeks.org')) return { label: 'G', name: 'GeeksforGeeks', bg: '#0F9D58', color: '#fff' };
+  if (u.includes('tutorialspoint.com')) return { label: 'T', name: 'TutorialsPoint', bg: '#2E8B57', color: '#fff' };
+  if (u.includes('javatpoint.com')) return { label: 'J', name: 'Javatpoint', bg: '#E67E22', color: '#fff' };
+  if (u.includes('w3schools.com')) return { label: 'W3', name: 'W3Schools', bg: '#04AA6D', color: '#fff' };
+  if (u.includes('wikipedia.org')) return { label: 'W', name: 'Wikipedia', bg: '#000', color: '#fff' };
+  return { label: '🔗', name: 'Reference', bg: '#64748B', color: '#fff' };
+}
 
-  const displayText = showHindi && answer.hindi ? answer.hindi : answer.text;
+function AnswerBody({ answer, color, showHindi }) {
+  const isRich = typeof answer === 'object' && answer !== null;
+  const displayText = isRich ? (showHindi && answer.hindi ? answer.hindi : answer.text) : answer;
+  const points = isRich && answer.points;
+  const image = isRich && answer.image;
+  const tip = isRich && answer.tip;
+  const links = isRich && answer.links;
+  const video = isRich && answer.video;
 
   return (
     <div>
       <p className="ans-text">{displayText}</p>
 
-      {answer.points && answer.points.length > 0 && (
+      {points && points.length > 0 && (
         <ul className="ans-points">
-          {answer.points.map((pt, i) => <li key={i}>{pt}</li>)}
+          {points.map((pt, i) => <li key={i}>{pt}</li>)}
         </ul>
       )}
 
-      {answer.tip && (
+      {image && (
+        <img src={image} alt="Diagram" className="ans-diagram" loading="lazy" />
+      )}
+
+      {tip && (
         <div className="ans-tip" style={{ borderLeftColor: color }}>
           <FaLightbulb style={{ color }} />
-          <span>{answer.tip}</span>
+          <span>{tip}</span>
         </div>
       )}
 
-      {answer.links && answer.links.length > 0 && (
-        <div className="ans-links">
-          {answer.links.map((link, i) => (
-            <a key={i} href={link.url} target="_blank" rel="noreferrer" className="ans-link-chip">
-              <FaExternalLinkAlt /> {link.label}
+      <div className="ans-bottom-bar">
+        <div className="ans-ref-icons">
+          {links && links.map((link, i) => {
+            const badge = getSiteBadge(link.url);
+            return (
+              <a
+                key={i}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="ans-icon-btn"
+                style={{ background: badge.bg, color: badge.color }}
+                title={badge.name}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {badge.label}
+              </a>
+            );
+          })}
+          {video && (
+            <a
+              href={video}
+              target="_blank"
+              rel="noreferrer"
+              className="ans-icon-btn ans-icon-youtube"
+              title="Watch on YouTube"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FaYoutube />
             </a>
-          ))}
+          )}
         </div>
-      )}
-
-      {answer.video && (
-        <a href={answer.video} target="_blank" rel="noreferrer" className="ans-video-btn">
-          <FaYoutube /> Watch video explanation
-        </a>
-      )}
+        <button
+          className="ans-edit-btn"
+          title="Edit answer — coming soon"
+          onClick={(e) => e.stopPropagation()}
+          disabled
+        >
+          <FaEdit />
+        </button>
+      </div>
     </div>
   );
 }
@@ -128,9 +171,11 @@ function SubjectPage() {
         <div className="sub-q-answer" style={{ maxHeight: openId === q.id ? '900px' : '0' }}>
           <div className="sub-q-answer-inner">
             {hasHindi && (
-              <button className="ans-lang-toggle" style={{ color, borderColor: color }} onClick={() => toggleHindi(q.id)}>
-                <FaLanguage /> {hindiMap[q.id] ? 'English' : 'हिंदी'}
-              </button>
+              <div className="sub-q-answer-actions">
+                <button className="ans-lang-toggle" style={{ color, borderColor: color }} onClick={() => toggleHindi(q.id)}>
+                  <FaLanguage /> {hindiMap[q.id] ? 'English' : 'हिंदी'}
+                </button>
+              </div>
             )}
             <AnswerBody answer={q.answer} color={color} showHindi={!!hindiMap[q.id]} />
           </div>
