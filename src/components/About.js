@@ -15,8 +15,8 @@ const fadeUp = {
 };
 
 const stats = [
-  { icon: FaBookOpen, value: "8+",   label: "Subjects" },
-  { icon: FaCode,     value: "100+", label: "Questions" },
+  { icon: FaBookOpen, value: "14+",  label: "Subjects" },
+  { icon: FaCode,     value: "400+", label: "Questions" },
   { icon: FaUsers,    value: "3",    label: "Years of Papers" },
   { icon: FaRocket,   value: "1",    label: "University, Growing" }
 ];
@@ -170,11 +170,11 @@ function About() {
             <a href="https://github.com/arifkhan-dev0521" target="_blank" rel="noreferrer">
               <FaGithub /> arifkhan-dev0521
             </a>
-            <a href="https://instagram.com/" target="_blank" rel="noreferrer">
-              <FaInstagram /> Instagram
+            <a href="https://instagram.com/malik_arif_07/" target="_blank" rel="noreferrer">
+              <FaInstagram /> malik_arif_07
             </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noreferrer">
-              <FaLinkedin /> LinkedIn
+            <a href="https://linkedin.com/in/arifkhan442" target="_blank" rel="noreferrer">
+              <FaLinkedin /> Arif Khan
             </a>
           </div>
         </motion.div>

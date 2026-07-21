@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa';
 import { db } from '../firebase';
 import Breadcrumb from './Breadcrumb';
+import AnswerEditor from './AnswerEditor';
 import './SubjectPage.css';
 
 // Detects known reference sites from a URL and returns a small branded badge config.
@@ -21,9 +22,10 @@ function getSiteBadge(url) {
   return { label: '🔗', name: 'Reference', bg: '#64748B', color: '#fff' };
 }
 
-function AnswerBody({ answer, color, showHindi }) {
+function AnswerBody({ answer, color, showHindi, onEdit }) {
   const isRich = typeof answer === 'object' && answer !== null;
   const displayText = isRich ? (showHindi && answer.hindi ? answer.hindi : answer.text) : answer;
+  const html = isRich && answer.html;
   const points = isRich && answer.points;
   const image = isRich && answer.image;
   const tip = isRich && answer.tip;
@@ -32,16 +34,20 @@ function AnswerBody({ answer, color, showHindi }) {
 
   return (
     <div>
-      <p className="ans-text">{displayText}</p>
-
-      {points && points.length > 0 && (
-        <ul className="ans-points">
-          {points.map((pt, i) => <li key={i}>{pt}</li>)}
-        </ul>
-      )}
-
-      {image && (
-        <img src={image} alt="Diagram" className="ans-diagram" loading="lazy" />
+      {html ? (
+        <div className="ans-rich-html" dangerouslySetInnerHTML={{ __html: html }} />
+      ) : (
+        <>
+          <p className="ans-text">{displayText}</p>
+          {points && points.length > 0 && (
+            <ul className="ans-points">
+              {points.map((pt, i) => <li key={i}>{pt}</li>)}
+            </ul>
+          )}
+          {image && (
+            <img src={image} alt="Diagram" className="ans-diagram" loading="lazy" />
+          )}
+        </>
       )}
 
       {tip && (
@@ -85,9 +91,8 @@ function AnswerBody({ answer, color, showHindi }) {
         </div>
         <button
           className="ans-edit-btn"
-          title="Edit answer — coming soon"
-          onClick={(e) => e.stopPropagation()}
-          disabled
+          title="Edit this answer"
+          onClick={(e) => { e.stopPropagation(); onEdit && onEdit(); }}
         >
           <FaEdit />
         </button>
@@ -106,6 +111,7 @@ function SubjectPage() {
   const [subject, setSubject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hindiMap, setHindiMap] = useState({});
+  const [editingQuestion, setEditingQuestion] = useState(null); // { question, target }
 
   useEffect(() => {
     async function fetchSubject() {
@@ -177,7 +183,17 @@ function SubjectPage() {
                 </button>
               </div>
             )}
-            <AnswerBody answer={q.answer} color={color} showHindi={!!hindiMap[q.id]} />
+            <AnswerBody
+              answer={q.answer}
+              color={color}
+              showHindi={!!hindiMap[q.id]}
+              onEdit={() => setEditingQuestion({
+                question: q,
+                target: viewMode === 'unit'
+                  ? { scope: 'unit', unitKey: activeUnit }
+                  : { scope: 'yearWise', year: activeYear }
+              })}
+            />
           </div>
         </div>
       </div>
@@ -313,6 +329,31 @@ function SubjectPage() {
             </motion.div>
           </AnimatePresence>
         </>
+      )}
+
+      {editingQuestion && (
+        <AnswerEditor
+          subjectId={subjectId}
+          target={editingQuestion.target}
+          question={editingQuestion.question}
+          color={color}
+          onClose={() => setEditingQuestion(null)}
+          onSaved={(newAnswer) => {
+            setSubject((prev) => {
+              const updated = JSON.parse(JSON.stringify(prev));
+              if (editingQuestion.target.scope === 'unit') {
+                const arr = updated.units[editingQuestion.target.unitKey].questions;
+                const idx = arr.findIndex((q) => q.id === editingQuestion.question.id);
+                if (idx !== -1) arr[idx] = { ...arr[idx], answer: newAnswer };
+              } else {
+                const arr = updated.yearWise[editingQuestion.target.year];
+                const idx = arr.findIndex((q) => q.id === editingQuestion.question.id);
+                if (idx !== -1) arr[idx] = { ...arr[idx], answer: newAnswer };
+              }
+              return updated;
+            });
+          }}
+        />
       )}
     </div>
   );

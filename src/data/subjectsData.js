@@ -1531,6 +1531,9 @@ export const subjectsData = {
           "When the currently running process waits for I/O, the CPU is immediately assigned to another ready process instead of remaining idle.",
           "This ensures: 1) CPU Utilization — CPU is always executing some process, never idle. 2) Memory Utilization — multiple programs share available RAM, making efficient use of memory. 3) Throughput — more jobs are completed per unit time.",
           "Result: both CPU and main memory are used effectively, dramatically reducing wasteful idle time."
+        ],
+        links: [
+          { label: "Multiprogramming in OS — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/multiprogramming-in-operating-system/" }
         ]
       } }
       ]
@@ -1559,6 +1562,9 @@ export const subjectsData = {
           "A system is in a safe state if there exists a safe sequence — an order in which every process can eventually get all its required resources, execute, and release them.",
           "If the state after granting is safe, the request is approved; otherwise the process must wait.",
           "The algorithm prevents deadlock by never leaving the system in an unsafe state."
+        ],
+        links: [
+          { label: "Banker's Algorithm — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/bankers-algorithm-in-operating-system-2/" }
         ]
       } }
       ]
@@ -1572,6 +1578,9 @@ export const subjectsData = {
           "Only the pages currently needed are kept in RAM (demand paging); the rest remain on disk.",
           "When a required page is not in RAM, a page fault occurs and the OS brings it in, possibly replacing an existing page.",
           "Page Replacement Policies: 1) FIFO — replace the page that was loaded into memory earliest; simple but may remove frequently-used pages. 2) LRU (Least Recently Used) — replace the page not used for the longest time; performs well in practice. 3) Optimal — replace the page that will not be needed for the longest time in the future; gives minimum page faults but is theoretical (requires future knowledge). 4) LFU (Least Frequently Used) — replace the page accessed the fewest number of times."
+        ],
+        links: [
+          { label: "Page Replacement Algorithms — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/page-replacement-algorithms-in-operating-systems/" }
         ]
       } },
         { id: 7, marks: "5 Marks", text: "Explain the Critical Section problem.", answer: {
@@ -1580,6 +1589,9 @@ export const subjectsData = {
           "The Critical Section Problem is ensuring that when one process is executing in its critical section, no other process is allowed to execute in theirs.",
           "A correct solution must satisfy three conditions: 1) Mutual Exclusion — only one process in critical section at a time. 2) Progress — if no process is in the critical section, selection of the next entering process cannot be postponed indefinitely. 3) Bounded Waiting — a process cannot be made to wait indefinitely (no starvation).",
           "Solutions: mutex locks, semaphores, and monitors."
+        ],
+        links: [
+          { label: "Critical Section — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/critical-section-in-synchronization/" }
         ]
       } },
         { id: 8, marks: "5 Marks", text: "Explain Segmentation in memory management.", answer: {
@@ -1589,6 +1601,9 @@ export const subjectsData = {
           "The segment table maps each segment number to its physical base and limit.",
           "Advantages: Supports the logical structure of programs, enables easy sharing and protection at the segment level.",
           "Disadvantage: Causes external fragmentation because segments are variable in size, leaving irregular gaps in memory."
+        ],
+        links: [
+          { label: "Paging vs Segmentation — GeeksforGeeks", url: "https://www.geeksforgeeks.org/difference-between-paging-and-segmentation/" }
         ]
       } }
       ]
@@ -1600,6 +1615,9 @@ export const subjectsData = {
         text: "Disk scheduling determines the order in which pending disk I/O requests are serviced, minimizing head movement (seek time) for better performance.",
         points: [
           "Algorithms: 1) FCFS (First Come First Served) — requests are served in the exact order they arrive; simple but may cause long unnecessary head movements. 2) SSTF (Shortest Seek Time First) — always serves the request closest to the current head position; reduces seek time but can cause starvation for far-away requests. 3) SCAN (Elevator Algorithm) — head moves in one direction servicing all requests in its path, then reverses; fair and no starvation. 4) C-SCAN (Circular SCAN) — head only services requests while moving in one direction, then jumps back to the beginning without servicing on the return trip; provides more uniform wait times than SCAN."
+        ],
+        links: [
+          { label: "Disk Scheduling Algorithms — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/disk-scheduling-algorithms/" }
         ]
       } },
         { id: 10, marks: "5 Marks", text: "Explain disk structure in detail.", answer: {
@@ -1647,6 +1665,9 @@ export const subjectsData = {
         points: [
           "The structure must remain acyclic (no cycles) to prevent infinite loops during directory traversal.",
           "Deletion must be handled carefully — a file is deleted only when no more links point to it (using reference counting)."
+        ],
+        links: [
+          { label: "Directory Structures — GeeksforGeeks", url: "https://www.geeksforgeeks.org/structures-of-directory-in-operating-system/" }
         ]
       } },
       { id: 1, section: "Unit 1", marks: "10 Marks", text: "What is an Operating System? Explain the concept of timesharing, distributed, and network operating system in detail.", answer: {
@@ -1701,6 +1722,9 @@ export const subjectsData = {
           "LRU — remove least recently used page (performs well, commonly used).",
           "Optimal — remove page needed farthest in future (best performance, theoretical only).",
           "LFU — remove least frequently accessed page."
+        ],
+        links: [
+          { label: "Virtual Memory — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/virtual-memory-in-operating-system/" }
         ]
       } },
       { id: 7, section: "Unit 3", marks: "5 Marks", text: "Critical Section problem.", answer: {
@@ -1708,6 +1732,9 @@ export const subjectsData = {
         points: [
           "Solution requires: Mutual Exclusion, Progress, and Bounded Waiting.",
           "Implemented using semaphores, mutex locks, or monitors."
+        ],
+        links: [
+          { label: "Critical Section — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/critical-section-in-synchronization/" }
         ]
       } },
       { id: 8, section: "Unit 3", marks: "5 Marks", text: "Segmentation.", answer: {
@@ -1794,7 +1821,10 @@ export const subjectsData = {
           "Microkernel — kernel keeps only essential functions (basic IPC, minimal process/memory mgmt); other services run as user-mode servers.",
           "Microkernel: more stable and modular since a failing service doesn't crash the kernel, but slower due to IPC overhead. Example: QNX, Minix."
         ],
-        tip: "Exam trick: Monolithic = speed, Microkernel = stability. Mention this trade-off explicitly for full marks."
+        tip: "Exam trick: Monolithic = speed, Microkernel = stability. Mention this trade-off explicitly for full marks.",
+        links: [
+          { label: "Monolithic vs Microkernel — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/difference-between-microkernel-and-monolithic-kernel/" }
+        ]
       } },
       { id: 207, section: "Unit 1", marks: "5 Marks", text: "What is Process Control Block? Explain different types of components of PCB.", answer: {
         text: "A Process Control Block (PCB) is a data structure maintained by the OS for each process, holding all information needed to manage it. Components: Process ID (unique identifier), Process State (new/ready/running/waiting/terminated), Program Counter (address of next instruction), CPU registers (saved during context switch), CPU scheduling information (priority, queue pointers), Memory management information (base/limit registers, page tables), Accounting information (CPU used, time limits), and I/O status information (open files, allocated devices).",
@@ -1808,7 +1838,10 @@ export const subjectsData = {
           "Accounting Info — CPU time used, time limits.",
           "I/O Status Info — open files, allocated devices."
         ],
-        tip: "PCB is created when a process starts and destroyed when it terminates — it's how the OS 'remembers' a process."
+        tip: "PCB is created when a process starts and destroyed when it terminates — it's how the OS 'remembers' a process.",
+        links: [
+          { label: "Process Control Block — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/process-control-block-in-os/" }
+        ]
       } },
       { id: 208, section: "Unit 1", marks: "5 Marks", text: "Explain inter process communication with different methods.", answer: {
         text: "Inter Process Communication (IPC) allows processes to exchange data and synchronize their actions. Methods: 1) Shared Memory — a region of memory is mapped into the address space of multiple processes; fast since the kernel is not involved after setup, but requires explicit synchronization. 2) Message Passing — processes exchange messages via send()/receive() through the kernel (pipes, message queues, sockets); simpler and safer but slower due to kernel overhead. 3) Pipes/Named Pipes (FIFOs) for related or unrelated processes. 4) Sockets for communication across a network.",
@@ -1831,7 +1864,11 @@ export const subjectsData = {
           "Short-term scheduler — picks which ready process runs next; runs very frequently.",
           "Medium-term scheduler — handles swapping to temporarily reduce the degree of multiprogramming."
         ],
-        tip: "Remember the 3 schedulers by frequency: Long-term = rare, Short-term = very frequent, Medium-term = occasional."
+        tip: "Remember the 3 schedulers by frequency: Long-term = rare, Short-term = very frequent, Medium-term = occasional.",
+        links: [
+          { label: "CPU Scheduling Criteria — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/cpu-scheduling-criteria/" },
+          { label: "CPU Scheduling — TutorialsPoint", url: "https://www.tutorialspoint.com/what-are-different-types-of-cpu-scheduling-and-the-scheduling-criteria" }
+        ]
       } },
       { id: 210, section: "Unit 2", marks: "5 Marks", text: "What is Deadlock? Discuss different necessary conditions of deadlock.", answer: {
         text: "Deadlock is a situation where a set of processes are permanently blocked, each holding a resource while waiting for another resource held by another process in the same set. Four necessary conditions (all must hold simultaneously): Mutual Exclusion (resources are non-shareable), Hold and Wait (a process holds a resource while waiting for another), No Preemption (a resource cannot be forcibly taken away), and Circular Wait (a closed chain of processes each waiting for a resource held by the next).",
@@ -1841,7 +1878,10 @@ export const subjectsData = {
           "No Preemption — a resource can't be forcibly taken away from a process.",
           "Circular Wait — a closed chain of processes, each waiting for a resource held by the next."
         ],
-        tip: "All four conditions must hold simultaneously for deadlock to occur — breaking even one prevents it."
+        tip: "All four conditions must hold simultaneously for deadlock to occur — breaking even one prevents it.",
+        links: [
+          { label: "Deadlock in OS — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/introduction-of-deadlock-in-operating-system/" }
+        ]
       } },
       { id: 211, section: "Unit 2", marks: "5 Marks", text: "Explain how semaphores is used to solve synchronization problem.", answer: {
         text: "Semaphores solve synchronization problems by controlling access to shared resources through atomic wait(S) — decrement, block if the value goes negative — and signal(S) — increment, wake a waiting process — operations. A binary semaphore (mutex, value 0/1) ensures mutual exclusion in a critical section. A counting semaphore manages access to a resource with multiple instances, e.g., in the producer-consumer problem, one semaphore tracks empty buffer slots and another tracks filled slots, ensuring the producer and consumer never access the buffer unsafely.",
@@ -1850,6 +1890,9 @@ export const subjectsData = {
           "signal(S): increment S; wakes up a blocked process if any is waiting.",
           "Binary semaphore (mutex) ensures mutual exclusion inside a critical section.",
           "Counting semaphore example — Producer-Consumer: one semaphore tracks empty slots, another tracks filled slots, so the buffer is never accessed unsafely."
+        ],
+        links: [
+          { label: "Producer-Consumer using Semaphores — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/producer-consumer-problem-using-semaphores-set-1/" }
         ]
       } },
       { id: 212, section: "Unit 3", marks: "5 Marks", text: "Differentiate between Fixed and Variable Partitioning.", answer: {
@@ -1868,6 +1911,10 @@ export const subjectsData = {
           "Paging: no external fragmentation, may cause internal fragmentation; invisible to the programmer.",
           "Segmentation — program split into variable-sized logical units (functions, arrays, stack).",
           "Segmentation: no internal fragmentation, causes external fragmentation; visible to the programmer (matches how they think about their program)."
+        ],
+        links: [
+          { label: "Paging vs Segmentation — GeeksforGeeks", url: "https://www.geeksforgeeks.org/difference-between-paging-and-segmentation/" },
+          { label: "Paging vs Segmentation — TutorialsPoint", url: "https://www.tutorialspoint.com/article/difference-between-paging-and-segmentation" }
         ]
       } },
       { id: 214, section: "Unit 3", marks: "10 Marks", text: "Consider the reference string 1,2,3,4,2,1,6,5,1,2,3,7,6,3,2,1,2,3,6 with 4 frames (initially all frames empty). How many page faults occur for (i) LRU Replacement and (ii) FIFO Replacement?", answer: {
@@ -1878,7 +1925,10 @@ export const subjectsData = {
           "LRU evicts the page that was least recently used, based on actual access pattern → 10 page faults, 9 hits.",
           "LRU wins here because it keeps recently reused pages (like 1, 2, 3) in memory instead of blindly evicting the oldest arrival."
         ],
-        tip: "In numericals like this, always draw the frame table step-by-step in the exam — examiners give partial marks for correct working even if the final count is off."
+        tip: "In numericals like this, always draw the frame table step-by-step in the exam — examiners give partial marks for correct working even if the final count is off.",
+        links: [
+          { label: "Page Replacement Algorithms — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/page-replacement-algorithms-in-operating-systems/" }
+        ]
       } },
       { id: 215, section: "Unit 4", marks: "5 Marks", text: "Explain Directory Structures with advantages and disadvantages.", answer: {
         text: "Single-level: one directory shared by all users; simple but causes naming conflicts and no grouping. Two-level: a separate directory per user; avoids conflicts across users but no further subdivision within a user's own files. Tree-structured: directories can contain subdirectories, giving hierarchical organization; efficient searching and each user can have their own subdirectories, but path names can become long. Acyclic-graph: allows shared subdirectories/files via links, saving space, but complicates deletion (needs reference counting) and must avoid cycles. General graph: allows cycles too, the most flexible, but requires garbage collection to reclaim unreachable cyclic file space, making it the most complex.",
@@ -1888,6 +1938,9 @@ export const subjectsData = {
           "Tree-structured — directories can contain subdirectories; efficient searching and hierarchy, but path names can get long.",
           "Acyclic-graph — allows shared files/subdirectories via links, saving space; deletion is trickier (needs reference counting).",
           "General graph — allows cycles too, most flexible; needs garbage collection to reclaim unreachable cyclic space, most complex."
+        ],
+        links: [
+          { label: "Directory Structures — GeeksforGeeks", url: "https://www.geeksforgeeks.org/structures-of-directory-in-operating-system/" }
         ]
       } },
       { id: 216, section: "Unit 4", marks: "5 Marks", text: "Explain different techniques of Free Space Management.", answer: {
@@ -1897,6 +1950,9 @@ export const subjectsData = {
           "Linked List — free blocks linked together via pointers; no wasted space but slow to find multiple contiguous blocks.",
           "Grouping — first free block stores addresses of several other free blocks, so many can be found at once.",
           "Counting — stores the address of the first free block plus a count of contiguous free blocks after it; compact for large free runs."
+        ],
+        links: [
+          { label: "Free Space Management — GeeksforGeeks", url: "https://www.geeksforgeeks.org/free-space-management-in-operating-system/" }
         ]
       } },
       { id: 217, section: "Unit 4", marks: "10 Marks", text: "What is Disk Scheduling? Describe the LOOK and C-LOOK algorithms with Example.", answer: {
@@ -1907,7 +1963,10 @@ export const subjectsData = {
           "C-LOOK (Circular LOOK) — services requests in one direction up to the last request, then jumps directly back to the closest request at the other end and continues in the same original direction.",
           "Example: requests at tracks 38, 39, 18, 90, 150, 160, 184; head starts at 55 moving upward — LOOK: 90→150→160→184, then reverses to 39→38→18. C-LOOK: 90→150→160→184, then jumps to 18→38→39."
         ],
-        tip: "C-LOOK gives more uniform wait times than LOOK since it doesn't favour requests near either end of the disk."
+        tip: "C-LOOK gives more uniform wait times than LOOK since it doesn't favour requests near either end of the disk.",
+        links: [
+          { label: "Disk Scheduling Algorithms — GeeksforGeeks", url: "https://www.geeksforgeeks.org/operating-systems/disk-scheduling-algorithms/" }
+        ]
       } }
     ]
   }
@@ -2058,6 +2117,9 @@ export const subjectsData = {
         points: [
           "The multidisciplinary study of the environment — covering ecology, pollution, resource use, and conservation.",
           "Builds the awareness and skills needed to protect natural resources sustainably for present and future generations."
+        ],
+        links: [
+          { label: "Desert Ecosystem — GeeksforGeeks", url: "https://www.geeksforgeeks.org/biology/desert-ecosystem-characteristics-types/" }
         ]
       } },
       { id: 302, section: "Compulsory Question", marks: "1 Mark", text: "Renewable energy sources.", answer: {
@@ -2110,6 +2172,9 @@ export const subjectsData = {
           "Biotic: producers (xerophytic plants like cacti), consumers (camels, desert foxes, reptiles), limited decomposers.",
           "Function: short simple food chain; slow nutrient cycling.",
           "Example: Thar Desert — khejri trees support gazelles and foxes."
+        ],
+        links: [
+          { label: "Desert Ecosystem — GeeksforGeeks", url: "https://www.geeksforgeeks.org/biology/desert-ecosystem-characteristics-types/" }
         ]
       } },
       { id: 309, section: "Unit 1", marks: "3.5 Marks", text: "Energy flow in an Ecosystem.", answer: {
@@ -2135,6 +2200,9 @@ export const subjectsData = {
           "Gene Banks (cryopreservation) — genetic material stored at very low temperatures.",
           "Captive Breeding Programs — boost endangered populations before reintroduction.",
           "Tissue Culture Banks — preserve regenerable plant samples."
+        ],
+        links: [
+          { label: "In-Situ & Ex-Situ Conservation — GeeksforGeeks", url: "https://www.geeksforgeeks.org/biology/in-situ-and-ex-situ-conservation-of-biodiversity/" }
         ]
       } },
       { id: 312, section: "Unit 2", marks: "7 Marks", text: "Describe different types of Water resources present in India.", answer: {
@@ -2145,6 +2213,9 @@ export const subjectsData = {
           "Glacial/snow-fed sources — feed perennial Himalayan rivers.",
           "Rainwater — collected via harvesting systems.",
           "Coastal/marine water — for fishing and desalination."
+        ],
+        links: [
+          { label: "Water Resources in India — GeeksforGeeks", url: "https://www.geeksforgeeks.org/social-science/water-resources-in-india-class-12-geography-notes/" }
         ]
       } },
       { id: 313, section: "Unit 3", marks: "7 Marks", text: "Explain the Phenomenon and impacts of Global warming.", answer: {
@@ -2153,6 +2224,9 @@ export const subjectsData = {
           "Long-term rise in Earth's average surface temperature due to increased greenhouse gases from fossil fuels, deforestation, industry.",
           "Impacts: rising sea levels, more frequent heatwaves/droughts/floods/cyclones.",
           "Impacts: biodiversity loss, disrupted agriculture, ocean acidification."
+        ],
+        links: [
+          { label: "Global Warming — GeeksforGeeks", url: "https://www.geeksforgeeks.org/global-warming/" }
         ]
       } },
       { id: 314, section: "Unit 3", marks: "7 Marks", text: "Write down the causes and health effects of Noise pollution.", answer: {
@@ -2160,6 +2234,9 @@ export const subjectsData = {
         points: [
           "Causes: traffic, industrial machinery, construction activity, loudspeakers, aircraft.",
           "Health effects: hearing loss/impairment, hypertension, stress, sleep disturbance, reduced concentration and productivity."
+        ],
+        links: [
+          { label: "Noise Pollution — GeeksforGeeks", url: "https://www.geeksforgeeks.org/physics/noise-pollution/" }
         ]
       } },
       { id: 315, section: "Unit 4", marks: "7 Marks", text: "Describe how Human population growth impacts Environment and Human health.", answer: {
@@ -2168,6 +2245,9 @@ export const subjectsData = {
           "Environmental: deforestation, overexploitation of resources, more pollution/waste, biodiversity loss.",
           "Health: spread of infectious disease, strain on sanitation/clean water access, more pollution-related illness.",
           "Burdens healthcare and food security, affecting low-income populations most."
+        ],
+        links: [
+          { label: "How Humans Affect the Environment — GeeksforGeeks", url: "https://www.geeksforgeeks.org/biology/how-does-human-affect-the-environment/" }
         ]
       } },
       { id: 316, section: "Unit 4", marks: "7 Marks", text: "Write down the causes and management strategies of Landslides.", answer: {
@@ -2175,6 +2255,9 @@ export const subjectsData = {
         points: [
           "Causes: heavy rainfall, deforestation, steep unstable slopes, earthquakes, unplanned hill-slope construction.",
           "Management: afforestation on slopes, retaining walls & proper drainage, restricting construction in vulnerable zones, early warning/monitoring systems."
+        ],
+        links: [
+          { label: "Natural Hazards & Landslides — GeeksforGeeks", url: "https://www.geeksforgeeks.org/social-science/natural-hazards-and-disasters-class-11-geography-notes/" }
         ]
       } }
     ],
@@ -2258,6 +2341,9 @@ export const subjectsData = {
         points: [
           "In-situ (within natural habitat): National Parks, Wildlife Sanctuaries, Biosphere Reserves.",
           "Ex-situ (outside natural habitat): Botanical Gardens/Zoos, Seed Banks, Gene Banks, Captive Breeding Programs."
+        ],
+        links: [
+          { label: "In-Situ & Ex-Situ Conservation — GeeksforGeeks", url: "https://www.geeksforgeeks.org/biology/in-situ-and-ex-situ-conservation-of-biodiversity/" }
         ]
       } },
       { id: 412, section: "Unit 2", marks: "7 Marks", text: "Role of sustainable development in environment conservation.", answer: {
@@ -2283,6 +2369,9 @@ export const subjectsData = {
           "Causes: excess fertilizers/pesticides, industrial/mining waste dumping, improper solid waste disposal, deforestation-driven erosion.",
           "Effects: reduced fertility, groundwater contamination, harm to soil microorganisms, toxins entering the food chain.",
           "Prevention: organic farming, proper waste treatment/disposal, afforestation, controlled agrochemical use."
+        ],
+        links: [
+          { label: "Soil Pollution — GeeksforGeeks", url: "https://www.geeksforgeeks.org/chemistry/soil-pollution/" }
         ]
       } },
       { id: 415, section: "Unit 4", marks: "7 Marks", text: "Describe the role of religions and cultures in environmental conservation.", answer: {
@@ -2298,6 +2387,9 @@ export const subjectsData = {
         points: [
           "Causes: prolonged rainfall deficiency, poor water management, over-extraction of groundwater, deforestation reducing the water table.",
           "Impacts: crop failure/food shortages, drinking water scarcity, livestock loss, migration, long-term desertification."
+        ],
+        links: [
+          { label: "Droughts — GeeksforGeeks", url: "https://geeksforgeeks.org/droughts-class-11-geography-notes" }
         ]
       } }
     ]

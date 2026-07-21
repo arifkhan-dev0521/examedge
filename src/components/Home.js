@@ -74,7 +74,7 @@ function Home() {
               <button className="eh-btn-primary" onClick={() => navigate('/kuk')}>
                 Explore Subjects <FaArrowRight />
               </button>
-              <button className="eh-btn-outline" onClick={() => navigate('/subject/bca-ctis/ethical-hacking')}>
+              <button className="eh-btn-outline" onClick={() => navigate('/subject/bca-ctis/concepts-of-os')}>
                 View a Solved Paper <FaFileAlt />
               </button>
             </div>
@@ -236,8 +236,8 @@ function Home() {
                 that fix — one subject at a time.
               </p>
               <div className="eh-mission-stats">
-                <div><h3>8+</h3><p>Subjects</p></div>
-                <div><h3>100+</h3><p>Questions</p></div>
+                <div><h3>14+</h3><p>Subjects</p></div>
+                <div><h3>400+</h3><p>Questions</p></div>
                 <div><h3>3</h3><p>Years of Papers</p></div>
                 <div><h3>1</h3><p>University, Growing</p></div>
               </div>
@@ -258,19 +258,19 @@ function Home() {
               <div className="eh-footer-logo">ExamEdge</div>
               <p>Built by a BCA student, for BCA students. Currently live for Kurukshetra University.</p>
               <div className="eh-footer-socials">
-                <a href="https://instagram.com/yourhandle" target="_blank" rel="noreferrer"><FaInstagram /></a>
+                <a href="https://instagram.com/malik_arif_07" target="_blank" rel="noreferrer"><FaInstagram /></a>
                 <a href="https://facebook.com/yourhandle" target="_blank" rel="noreferrer"><FaFacebook /></a>
                 <a href="https://github.com/arifkhan-dev0521" target="_blank" rel="noreferrer"><FaGithub /></a>
-                <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noreferrer"><FaLinkedin /></a>
+                <a href="https://linkedin.com/in/arifkhan442" target="_blank" rel="noreferrer"><FaLinkedin /></a>
                 <a href="https://youtube.com/@yourhandle" target="_blank" rel="noreferrer"><FaYoutube /></a>
               </div>
             </div>
 
             <div className="eh-footer-col">
               <h4>Explore</h4>
-              <button onClick={() => navigate('/kuk')}>BCA CTIS</button>
-              <button onClick={() => navigate('/kuk')}>BCA General</button>
-              <button onClick={() => navigate('/kuk')}>BCA AI</button>
+              <button onClick={() => navigate('/kuk/bca-ctis')}>BCA CTIS</button>
+              <button onClick={() => navigate('/kuk/bca-general')}>BCA General</button>
+              <button onClick={() => navigate('/kuk/bca-ai')}>BCA AI</button>
               <button onClick={() => navigate('/about')}>About the Developer</button>
             </div>
 

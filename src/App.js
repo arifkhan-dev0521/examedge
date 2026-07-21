@@ -12,6 +12,7 @@ import CoursePage from './components/CoursePage';
 import ComingSoon from './components/ComingSoon';
 import SubjectPage from './components/SubjectPage';
 import About from './components/About';
+import Editor from './components/Editor';
 import './theme.css';
 // import { uploadAllSubjects } from './uploadData';
 
@@ -66,6 +67,7 @@ function App() {
         <Route path="/dbms" element={<DBMSPage />} />
         <Route path="/c-programming" element={<CProgrammingPage />} />
         <Route path="/about" element={<About />} />
+        <Route path="/editor" element={<Editor />} />
       </Routes>
     </BrowserRouter>
   );
