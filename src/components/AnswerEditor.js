@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Underline } from '@tiptap/extension-underline';
@@ -21,15 +21,30 @@ import { TaskItem } from '@tiptap/extension-task-item';
 import { Placeholder } from '@tiptap/extension-placeholder';
 import { createLowlight, common } from 'lowlight';
 import { doc, setDoc } from 'firebase/firestore';
+import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
   FaBold, FaItalic, FaUnderline, FaStrikethrough, FaHighlighter,
   FaListUl, FaListOl, FaTasks, FaImage, FaTable,
   FaQuoteRight, FaLink, FaUndo, FaRedo, FaTimes, FaSave,
   FaAlignLeft, FaAlignCenter, FaAlignRight, FaAlignJustify,
-  FaSuperscript, FaSubscript, FaGripLines, FaLightbulb, FaTrash, FaPlus
+  FaSuperscript, FaSubscript, FaGripLines, FaLightbulb, FaTrash, FaPlus,
+  FaSyncAlt, FaExpand
 } from 'react-icons/fa';
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 import './AnswerEditor.css';
+
+const ResizableImage = ImageExt.extend({
+  addAttributes() {
+    return {
+      ...this.parent(),
+      width: {
+        default: '70%',
+        renderHTML: (attributes) => ({ style: `width: ${attributes.width}` }),
+        parseHTML: (element) => element.style.width || '70%'
+      }
+    };
+  }
+});
 
 const lowlight = createLowlight(common);
 
@@ -72,6 +87,8 @@ function AnswerEditor({ subjectId, target, question, color, onClose, onSaved }) 
     return '<p></p>';
   })();
 
+  const [, forceRerender] = useState(0);
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({ codeBlock: false }),
@@ -79,7 +96,7 @@ function AnswerEditor({ subjectId, target, question, color, onClose, onSaved }) 
       TextStyle,
       Color,
       Highlight.configure({ multicolor: true }),
-      ImageExt.configure({ inline: false, allowBase64: true }),
+      ResizableImage.configure({ inline: false, allowBase64: true }),
       Link.configure({ openOnClick: false, autolink: true }),
       CodeBlockLowlight.configure({ lowlight }),
       Table.configure({ resizable: true }),
@@ -91,16 +108,80 @@ function AnswerEditor({ subjectId, target, question, color, onClose, onSaved }) 
       CharacterCount,
       Placeholder.configure({ placeholder: 'Start writing the answer — headings, bold, images, code, tables, everything works here…' })
     ],
-    content: initialHTML
+    content: initialHTML,
+    // Tiptap v3 no longer force-rerenders React on every selection change.
+    // Without this, clicking an image never refreshes editor.isActive('image'),
+    // so the Delete/Replace/size bar silently never appears.
+    onSelectionUpdate: () => forceRerender((n) => n + 1),
+    onTransaction: () => forceRerender((n) => n + 1)
   });
 
   const setColor = useCallback((c) => editor?.chain().focus().setColor(c).run(), [editor]);
   const setHighlight = useCallback((c) => editor?.chain().focus().toggleHighlight({ color: c }).run(), [editor]);
 
+  const fileInputRef = useRef(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  // 'insert' = adding a brand new image, 'replace' = swapping the currently selected image
+  const uploadModeRef = useRef('insert');
+
   const insertImage = () => {
-    const url = window.prompt('Paste image URL (diagram, screenshot, etc.):');
-    if (url) editor.chain().focus().setImage({ src: url }).run();
+    uploadModeRef.current = 'insert';
+    const wantsUpload = window.confirm(
+      'Click OK to upload a photo from your device (gallery).\nClick Cancel to paste an image URL instead.'
+    );
+    if (wantsUpload) {
+      fileInputRef.current?.click();
+    } else {
+      const url = window.prompt('Paste image URL (diagram, screenshot, etc.):');
+      if (url) editor.chain().focus().setImage({ src: url, width: '70%' }).run();
+    }
   };
+
+  const replaceImage = () => {
+    uploadModeRef.current = 'replace';
+    const wantsUpload = window.confirm(
+      'Click OK to upload a new photo from your device to replace this image.\nClick Cancel to paste a new image URL instead.'
+    );
+    if (wantsUpload) {
+      fileInputRef.current?.click();
+    } else {
+      const url = window.prompt('Paste the new image URL:');
+      if (url) editor.chain().focus().updateAttributes('image', { src: url }).run();
+    }
+  };
+
+  const deleteImage = () => {
+    if (!window.confirm('Delete this image?')) return;
+    editor.chain().focus().deleteSelection().run();
+  };
+
+  const handleFileChosen = async (e) => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = ''; // allow re-selecting the same file later
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      window.alert('Please choose an image file.');
+      return;
+    }
+    setUploadingImage(true);
+    try {
+      // Uploaded as-is, no compression — keeps diagrams sharp when students zoom in.
+      const path = `answer-diagrams/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+      const fileRef = storageRef(storage, path);
+      await uploadBytes(fileRef, file);
+      const url = await getDownloadURL(fileRef);
+      if (uploadModeRef.current === 'replace') {
+        editor.chain().focus().updateAttributes('image', { src: url }).run();
+      } else {
+        editor.chain().focus().setImage({ src: url, width: '70%' }).run();
+      }
+    } catch (err) {
+      window.alert('Upload failed: ' + err.message + '\n(Check that Firebase Storage rules allow writes right now.)');
+    }
+    setUploadingImage(false);
+  };
+
+  const setImageSize = (width) => editor.chain().focus().updateAttributes('image', { width }).run();
 
   const insertLink = () => {
     const url = window.prompt('Paste the link URL:');
@@ -156,6 +237,7 @@ function AnswerEditor({ subjectId, target, question, color, onClose, onSaved }) 
 
       await setDoc(docRef, data);
       setSaveMsg('✅ Saved');
+      setTimeout(() => setSaveMsg(''), 2000);
       onSaved(newAnswer);
     } catch (err) {
       setSaveMsg('❌ ' + err.message);
@@ -261,7 +343,16 @@ function AnswerEditor({ subjectId, target, question, color, onClose, onSaved }) 
           <div className="ae-tb-divider" />
 
           <div className="ae-tb-group">
-            <ToolbarButton title="Insert image" onClick={insertImage}><FaImage /></ToolbarButton>
+            <ToolbarButton title="Insert image (upload or URL)" onClick={insertImage} disabled={uploadingImage}>
+              {uploadingImage ? <span className="ae-spinner" /> : <FaImage />}
+            </ToolbarButton>
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleFileChosen}
+              style={{ display: 'none' }}
+            />
             <ToolbarButton title="Insert table" onClick={insertTable}><FaTable /></ToolbarButton>
             <ToolbarButton title="Insert link" active={editor.isActive('link')} onClick={insertLink}><FaLink /></ToolbarButton>
             <ToolbarButton title="Blockquote" active={editor.isActive('blockquote')} onClick={() => editor.chain().focus().toggleBlockquote().run()}><FaQuoteRight /></ToolbarButton>
@@ -295,10 +386,27 @@ function AnswerEditor({ subjectId, target, question, color, onClose, onSaved }) 
           </div>
         </div>
 
+        {editor.isActive('image') && (
+          <div className="ae-image-size-bar">
+            <span>Diagram:</span>
+            <button type="button" onClick={() => setImageSize('30%')}>Small</button>
+            <button type="button" onClick={() => setImageSize('55%')}>Medium</button>
+            <button type="button" onClick={() => setImageSize('80%')}>Large</button>
+            <button type="button" onClick={() => setImageSize('100%')}>Full width</button>
+            <span className="ae-image-bar-sep" />
+            <button type="button" onClick={replaceImage} className="ae-image-bar-action">
+              <FaSyncAlt /> Replace
+            </button>
+            <button type="button" onClick={deleteImage} className="ae-image-bar-action ae-image-bar-danger">
+              <FaTrash /> Delete
+            </button>
+          </div>
+        )}
+
         <div className="ae-body">
           <div className="ae-editor-area">
             <EditorContent editor={editor} className="ae-tiptap" />
-            <div className="ae-wordcount">{words} words · {chars} characters</div>
+            <div className="ae-wordcount">{words} words · {chars} characters · Images upload at full quality — zoomable, not compressed <FaExpand style={{ marginLeft: 4 }} /></div>
           </div>
 
           <div className="ae-sidebar">
